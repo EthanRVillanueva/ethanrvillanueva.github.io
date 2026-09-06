@@ -31,8 +31,8 @@ A complete rebuild of ethanrvillanueva.github.io — a personal portfolio for a 
 
 | Technology | Role | Rationale |
 |---|---|---|
-| **Astro 5.x** | Static site framework | Component-based, zero JS by default, perfect GitHub Pages deployment |
-| **Tailwind CSS 4.x** | Styling | Utility-first, native dark mode support via `class` strategy, fast iteration |
+| **Astro (latest stable, 5.x+)** | Static site framework | Component-based, zero JS by default, perfect GitHub Pages deployment. Use Content Layer API for any data-driven content. |
+| **Tailwind CSS 4.x** | Styling | Utility-first, CSS-first configuration (no `tailwind.config.js`). Uses `@theme` directive and `@tailwindcss/vite` plugin. |
 | **TypeScript** | Scripting (minimal) | Type safety for the few interactive islands |
 
 ### Infrastructure
@@ -52,8 +52,15 @@ A complete rebuild of ethanrvillanueva.github.io — a personal portfolio for a 
 
 ### External Services
 
-- **Web3Forms** — contact form backend (carried over from current site, free tier, no server needed)
+- **Web3Forms** — contact form backend (carried over from current site, free tier, no server needed). Access key: `8d3f53a2-d7a1-44ce-9703-9b5d0c4a44fe`. Includes honeypot botcheck.
 - **Google Fonts** — typography (two families, loaded with `font-display: swap`)
+
+### Migration Notes
+
+- The old HTML5 UP "Forty" template files (`index.html`, `aboutme.html`, `projects.html`, `workexperience.html`, `extracurriculars.html`, `assets/`) will be replaced entirely
+- The existing `images/` directory contains tech stack SVGs and photos — carry over any that are still needed, discard the rest
+- The existing CV PDF (`assets/ethanvillanueva-cv.pdf`) should be preserved and moved to Astro's `public/` directory
+- Git history preserves the old site if ever needed
 
 ---
 
@@ -163,9 +170,27 @@ These are deliberately NOT the common AI-generated palettes (warm cream + terrac
 ### Dark Mode Implementation
 
 - Strategy: `class` on `<html>` element (Tailwind's `dark:` variant)
-- Default: respect `prefers-color-scheme` system preference
+- **Tailwind 4 setup**: In CSS, use `@custom-variant dark (&:where(.dark, .dark *));` to enable class-based dark mode (Tailwind 4 uses `prefers-color-scheme` by default — this overrides it)
+- Default: respect `prefers-color-scheme` system preference on first visit
 - Toggle: small sun/moon icon button in the header, persisted to `localStorage`
 - Transition: `transition-colors duration-300` on body for smooth theme switch
+- **Tailwind 4 global CSS entry point**: Use `@import "tailwindcss";` (replaces the old `@tailwind base/components/utilities` directives)
+- **Astro integration**: Use `@tailwindcss/vite` plugin in `astro.config.mjs` `vite.plugins` array (NOT `@astrojs/tailwind`, which is deprecated for Tailwind v4)
+
+```css
+/* src/styles/global.css */
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-accent: #2B7A78;
+  --color-accent-hover: #1D5553;
+  /* ... all design tokens go here ... */
+}
+```
 
 ---
 
@@ -490,7 +515,7 @@ All animations wrapped in `@media (prefers-reduced-motion: no-preference)`. User
 - **Zero JavaScript by default** — Astro ships no JS unless an island opts in
 - **JS islands** — only ThemeToggle (tiny, `client:load`) and scroll observer (could be CSS-only with `animation-timeline: view()` if browser support is sufficient, otherwise tiny vanilla JS)
 - **Font loading** — `font-display: swap`, preconnect to Google Fonts
-- **Images** — Astro's built-in `<Image>` component for optimised formats (WebP/AVIF) and responsive sizes
+- **Images** — Astro's built-in `<Image>` component from `astro:assets` for optimised formats (WebP/AVIF) and responsive sizes. Import as `import { Image } from 'astro:assets';`
 - **CSS** — Tailwind purges unused styles at build time
 - **Target** — Lighthouse score 95+ across all categories
 
@@ -499,9 +524,42 @@ All animations wrapped in `@media (prefers-reduced-motion: no-preference)`. User
 ## 10. Deployment
 
 - **Build:** `astro build` outputs to `dist/`
-- **Deploy:** GitHub Actions workflow triggers on push to `main`
-  - Installs dependencies, builds, deploys to GitHub Pages
-  - Astro has an official GitHub Pages integration (`@astrojs/github-pages` or the generic static adapter)
+- **No adapter needed** — Astro's default `output: 'static'` mode is correct for GitHub Pages
+- **Configuration in `astro.config.mjs`:**
+  - Set `site: 'https://ethanrvillanueva.github.io'`
+  - No `base` needed since this is a root user site (not a project repo subpath)
+- **Deploy:** GitHub Actions workflow triggers on push to `main` using **`withastro/action`**:
+
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install, build, and upload site
+        uses: withastro/action@v6
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+- **Important:** Place an empty `.nojekyll` file in `public/` to ensure GitHub Pages serves `_astro/` directories correctly
 - **Domain:** `ethanrvillanueva.github.io` (existing)
 - **Branch strategy:** `main` is the source, GitHub Pages serves from the Actions output
 
@@ -535,8 +593,8 @@ Content will be filled in during implementation. These are notes on tone and app
 
 | Decision | Choice | Why |
 |---|---|---|
-| Framework | Astro 5.x | Zero JS default, components, easy GitHub Pages deploy |
-| Styling | Tailwind CSS 4.x | Fast, native dark mode, tree-shakes unused styles |
+| Framework | Astro (latest stable) | Zero JS default, components, easy GitHub Pages deploy |
+| Styling | Tailwind CSS 4.x (CSS-first config) | Fast, native dark mode, tree-shakes unused styles |
 | Page structure | Single-page | Recruiter can scan everything quickly |
 | Hero | Clean typography, no gimmicks | The design is the statement |
 | About | Inside XP window | Personality touch, contained, memorable |
