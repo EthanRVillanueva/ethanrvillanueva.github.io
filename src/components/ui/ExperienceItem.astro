@@ -1,0 +1,47 @@
+---
+import type { Experience } from '../../data/experience';
+
+interface Props {
+  experience: Experience;
+}
+
+const { experience } = Astro.props;
+---
+
+<div
+  class={`p-6 rounded-lg bg-(--color-bg-surface) border border-(--color-border) transition-all ${
+    experience.featured
+      ? 'border-l-4 border-l-(--color-accent) shadow-sm'
+      : 'opacity-95'
+  }`}
+>
+  <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2">
+    <div>
+      <h3 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+        {experience.role}
+      </h3>
+      <div class="text-sm font-medium text-(--color-accent)">
+        {experience.company} · <span class="text-(--color-text-secondary)">{experience.location}</span>
+      </div>
+    </div>
+    <span class="text-xs sm:text-sm font-medium text-(--color-text-secondary) shrink-0">
+      {experience.duration}
+    </span>
+  </div>
+
+  <ul class="mt-3 space-y-1.5 list-disc list-inside text-sm text-(--color-text-secondary) leading-relaxed">
+    {experience.bullets.map((bullet) => (
+      <li>{bullet}</li>
+    ))}
+  </ul>
+
+  {experience.tech && (
+    <div class="mt-4 flex flex-wrap gap-1.5">
+      {experience.tech.map((t) => (
+        <span class="text-xs px-2.5 py-1 rounded-full bg-(--color-bg-muted) text-(--color-text-primary) font-medium">
+          {t}
+        </span>
+      ))}
+    </div>
+  )}
+</div>
