@@ -1,0 +1,52 @@
+---
+import TerminalWindow from './ui/TerminalWindow.astro';
+import { skillsData } from '../data/skills';
+---
+
+<section id="skills" class="py-12 sm:py-16 scroll-mt-16">
+  <div class="space-y-6">
+    <div class="space-y-1">
+      <h2
+        class="text-2xl sm:text-3xl font-bold text-(--color-text-primary)"
+        style="font-family: var(--font-heading);"
+      >
+        Technical Skills
+      </h2>
+      <p class="text-sm text-(--color-text-secondary)">
+        Tools, languages, and technologies I work with daily.
+      </p>
+    </div>
+
+    <TerminalWindow title="ethan@portfolio: ~/skills">
+      <div class="space-y-3">
+        <div>
+          <span class="text-[#27C93F] font-bold">ethan@portfolio</span>:<span class="text-[#4ECDC4]">~/skills</span>$ <span class="text-gray-100">cat stack.json</span>
+        </div>
+
+        <pre class="text-xs sm:text-sm leading-relaxed overflow-x-auto text-gray-200">
+&#123;
+  <span class="text-[#4ECDC4]">"languages"</span>: [
+    {skillsData.languages.map((l, i) => (
+      <><span class="text-[#F4C430]">"{l}"</span>{i < skillsData.languages.length - 1 ? ', ' : ''}</>
+    ))}
+  ],
+  <span class="text-[#4ECDC4]">"databases"</span>: [
+    {skillsData.databases.map((d, i) => (
+      <><span class="text-[#F4C430]">"{d}"</span>{i < skillsData.databases.length - 1 ? ', ' : ''}</>
+    ))}
+  ],
+  <span class="text-[#4ECDC4]">"tools"</span>: [
+    {skillsData.tools.map((t, i) => (
+      <><span class="text-[#F4C430]">"{t}"</span>{i < skillsData.tools.length - 1 ? ', ' : ''}</>
+    ))}
+  ]
+&#125;</pre>
+
+        <div class="pt-2">
+          <span class="text-[#27C93F] font-bold">ethan@portfolio</span>:<span class="text-[#4ECDC4]">~/skills</span>$ <span class="text-gray-100">echo "Always learning..."</span>
+          <div class="text-[#4ECDC4] mt-1">Always learning...</div>
+        </div>
+      </div>
+    </TerminalWindow>
+  </div>
+</section>
