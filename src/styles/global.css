@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-heading: 'Sora', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Light mode tokens (default) */
+  --color-bg-primary: #FAFAF8;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-muted: #F0EEEB;
+  --color-text-primary: #1C1C1C;
+  --color-text-secondary: #5A5A5A;
+  --color-accent: #2B7A78;
+  --color-accent-hover: #1D5553;
+  --color-border: #E0DDDA;
+}
+
+/* Dark mode token overrides */
+:root.dark {
+  --color-bg-primary: #151520;
+  --color-bg-surface: #1E1E2E;
+  --color-bg-muted: #1A1A28;
+  --color-text-primary: #E8E6E3;
+  --color-text-secondary: #9B9B9B;
+  --color-accent: #4ECDC4;
+  --color-accent-hover: #3DBDB5;
+  --color-border: #2A2A3C;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* Scroll reveal keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-on-scroll {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Gentle bounce for hero chevron stopping after 3 cycles */
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-chevron {
+  animation: gentleBounce 1.5s ease-in-out 3;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
