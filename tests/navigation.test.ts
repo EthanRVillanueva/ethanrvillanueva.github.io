@@ -3,11 +3,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 describe('Header and ThemeToggle Components', () => {
-  it('ThemeToggle provides accessible button and dark mode toggle logic', () => {
+  it('ThemeToggle provides accessible button and dark mode toggle logic for all instances', () => {
     const content = fs.readFileSync(path.resolve('src/components/ui/ThemeToggle.astro'), 'utf-8');
     expect(content).toContain('aria-label');
     expect(content).toContain('localStorage.setItem');
     expect(content).toContain('document.documentElement.classList.toggle');
+    expect(content).toContain('querySelectorAll');
+    expect(content).toContain('data-theme-toggle');
+    expect(content).not.toContain('id="theme-toggle"');
   });
 
   it('Header contains all required navigation anchors and mobile hamburger button', () => {
@@ -21,5 +24,6 @@ describe('Header and ThemeToggle Components', () => {
     expect(content).toContain('href="#contact"');
     expect(content).toContain('ThemeToggle');
     expect(content).toContain('IntersectionObserver');
+    expect(content).toContain('aria-controls="mobile-menu"');
   });
 });
