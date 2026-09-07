@@ -23,9 +23,13 @@ import BadtzMaru from './ui/BadtzMaru.astro';
       </a>
     </div>
 
-    <!-- Copyright & Badtz-Maru -->
-    <div class="flex items-center gap-3 text-xs text-(--color-text-secondary)">
+    <!-- Copyright, Legal & Badtz-Maru -->
+    <div class="flex flex-wrap items-center justify-center sm:justify-end gap-3 text-xs text-(--color-text-secondary)">
       <span>© 2026 Ethan Villanueva. All rights reserved.</span>
+      <span>·</span>
+      <a href="/privacy" class="hover:text-(--color-accent) transition-colors">Privacy</a>
+      <span>·</span>
+      <a href="/terms" class="hover:text-(--color-accent) transition-colors">Terms</a>
       <BadtzMaru size={24} />
     </div>
   </div>

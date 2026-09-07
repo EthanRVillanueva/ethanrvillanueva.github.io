@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Terms & Conditions | Ethan Villanueva" description="Terms and Conditions for Ethan Villanueva's personal portfolio website.">
+  <Header />
+  <main id="main-content" class="max-w-3xl mx-auto px-4 sm:px-6 py-16 space-y-8">
+    <div class="space-y-2 border-b border-(--color-border) pb-6">
+      <h1 class="text-3xl sm:text-4xl font-bold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+        Terms & Conditions
+      </h1>
+      <p class="text-sm text-(--color-text-secondary)">Last updated: September 2026</p>
+    </div>
+
+    <div class="space-y-6 text-sm sm:text-base text-(--color-text-secondary) leading-relaxed">
+      <section class="space-y-2">
+        <h2 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+          1. Purpose of the Site
+        </h2>
+        <p>
+          This website is a personal portfolio showcasing the software engineering projects, academic background, and professional experience of Ethan Villanueva. It is intended for recruitment, professional networking, and informational purposes.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+          2. Intellectual Property
+        </h2>
+        <p>
+          All original text, layout designs, and custom branding on this site are the intellectual property of Ethan Villanueva unless otherwise noted. Project code repositories linked on GitHub are governed by their respective open-source licenses as stated in their repositories. Third-party brand names, logos, or character designs (e.g. Sanrio's Badtz-Maru) remain the intellectual property of their respective owners and are referenced here under fair educational/fan art use.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+          3. Accuracy of Information
+        </h2>
+        <p>
+          While every reasonable effort is made to maintain accurate and up-to-date descriptions of technical capabilities, projects, and employment history, this site is provided on an "as is" basis without warranties of any kind.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+          4. Contact
+        </h2>
+        <p>
+          For any questions regarding these terms, please contact <a href="mailto:e.villanueva.cs@outlook.com" class="text-(--color-accent) underline">e.villanueva.cs@outlook.com</a>.
+        </p>
+      </section>
+
+      <div class="pt-6">
+        <a href="/" class="text-sm font-medium text-(--color-accent) hover:underline inline-flex items-center gap-1">
+          ← Return to portfolio
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,17 +1,23 @@
 ---
 import XPWindow from './ui/XPWindow.astro';
+import BadtzMaru from './ui/BadtzMaru.astro';
 ---
 
 <section id="about" class="py-12 sm:py-16 scroll-mt-16">
   <div class="space-y-6">
-    <div class="space-y-1">
-      <h2
-        class="text-2xl sm:text-3xl font-bold text-(--color-text-primary)"
-        style="font-family: var(--font-heading);"
-      >
-        About Me
-      </h2>
-      <p class="text-sm text-(--color-text-secondary)">A bit about my background and what drives my engineering work.</p>
+    <div class="flex items-end justify-between gap-4">
+      <div class="space-y-1">
+        <h2
+          class="text-2xl sm:text-3xl font-bold text-(--color-text-primary)"
+          style="font-family: var(--font-heading);"
+        >
+          About Me
+        </h2>
+        <p class="text-sm text-(--color-text-secondary)">A bit about my background and what drives my engineering work.</p>
+      </div>
+      <div class="hidden sm:block pb-1" title="Badtz-Maru mascot">
+        <BadtzMaru size={56} />
+      </div>
     </div>
 
     <XPWindow title="about_ethan.txt - Notepad" icon="📝" menuBar={true}>

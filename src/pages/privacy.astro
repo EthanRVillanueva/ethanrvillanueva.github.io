@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Privacy Policy | Ethan Villanueva" description="Privacy Policy for Ethan Villanueva's personal portfolio website.">
+  <Header />
+  <main id="main-content" class="max-w-3xl mx-auto px-4 sm:px-6 py-16 space-y-8">
+    <div class="space-y-2 border-b border-(--color-border) pb-6">
+      <h1 class="text-3xl sm:text-4xl font-bold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+        Privacy Policy
+      </h1>
+      <p class="text-sm text-(--color-text-secondary)">Last updated: September 2026</p>
+    </div>
+
+    <div class="space-y-6 text-sm sm:text-base text-(--color-text-secondary) leading-relaxed">
+      <section class="space-y-2">
+        <h2 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+          1. Overview & Zero Cookies
+        </h2>
+        <p>
+          I respect your privacy. This website is a static personal portfolio hosted on GitHub Pages. It sets <strong>zero tracking cookies</strong>, runs zero advertising scripts, and employs zero fingerprinting. You can browse completely freely without any tracking or consent popups.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+          2. Contact Form Submissions
+        </h2>
+        <p>
+          When you use the contact form on this site, your name, email address, and message are processed via <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" class="text-(--color-accent) underline">Web3Forms</a> and securely forwarded to my personal inbox (<a href="mailto:e.villanueva.cs@outlook.com" class="text-(--color-accent) underline">e.villanueva.cs@outlook.com</a>) solely for communicating with you. This information is never sold, shared, or used for unsolicited marketing.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+          3. Hosting & Server Logs
+        </h2>
+        <p>
+          This website is hosted by GitHub Pages. When you visit any website, standard server access logs (such as IP addresses and request timestamps) are processed by GitHub to maintain security and service integrity, governed by GitHub's <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer" class="text-(--color-accent) underline">Privacy Statement</a>.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+          4. Your Rights (GDPR)
+        </h2>
+        <p>
+          You have the right to request a copy of any communication you have sent to me or request its deletion at any time. To exercise these rights, please email <a href="mailto:e.villanueva.cs@outlook.com" class="text-(--color-accent) underline">e.villanueva.cs@outlook.com</a>.
+        </p>
+      </section>
+
+      <div class="pt-6">
+        <a href="/" class="text-sm font-medium text-(--color-accent) hover:underline inline-flex items-center gap-1">
+          ← Return to portfolio
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

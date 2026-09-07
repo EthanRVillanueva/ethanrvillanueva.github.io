@@ -8,9 +8,12 @@ interface Props {
 const { title, icon = '📝', menuBar = true } = Astro.props;
 ---
 
-<div class="xp-wrapper shadow-lg rounded-sm overflow-hidden border border-(--color-border)">
+<div
+  class="xp-wrapper shadow-lg rounded-sm border border-(--color-border) select-none"
+  data-draggable-window
+>
   <div class="window">
-    <div class="title-bar">
+    <div class="title-bar cursor-grab active:cursor-grabbing" data-drag-handle>
       <div class="title-bar-text flex items-center gap-1.5 font-bold">
         {icon && <span aria-hidden="true">{icon}</span>}
         <span>{title}</span>
@@ -23,7 +26,7 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     </div>
 
     {menuBar && (
-      <div class="xp-menu-bar select-none px-2 py-1 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] dark:bg-[#2A2A3C] dark:border-[#3E3E54] dark:text-[#E8E6E3] flex gap-3 text-[#1C1C1C]">
+      <div class="xp-menu-bar select-none px-2 py-1 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] flex gap-3 text-[#1C1C1C]">
         <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">File</span>
         <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">Edit</span>
         <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">Format</span>
@@ -32,7 +35,8 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
       </div>
     )}
 
-    <div class="window-body bg-white dark:bg-(--color-bg-surface) text-(--color-text-primary) p-4 sm:p-6 transition-colors">
+    <!-- Notepad inner body: changes to dark background in dark mode while window frame stays authentic XP -->
+    <div class="window-body select-text bg-white dark:bg-(--color-bg-surface) text-(--color-text-primary) p-4 sm:p-6 transition-colors">
       <slot />
     </div>
   </div>
@@ -41,23 +45,81 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
 <style>
   @import "xp.css/dist/XP.css";
 
-  /* Scoped XP adjustments and dark mode adaptivity */
+  .xp-wrapper {
+    will-change: transform;
+    touch-action: pan-y;
+  }
+
   .xp-wrapper .window {
     width: 100%;
     margin: 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   }
 
-  :global(.dark) .xp-wrapper .window {
-    background: #1E1E2E;
-    border-color: #3A3A4E;
-  }
-
-  :global(.dark) .xp-wrapper .title-bar {
-    background: linear-gradient(180deg, #3A3A52 0%, #252538 100%);
+  /* Authentic Windows XP Luna title bar height (30px) and font styling */
+  .xp-wrapper .title-bar {
+    min-height: 30px;
+    padding: 4px 6px 4px 8px;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    user-select: none;
+    touch-action: none;
   }
 
   .title-bar-controls button {
     pointer-events: none;
   }
 </style>
+
+<script>
+  // Spring drag micro-interaction: drag anywhere, snaps smoothly back into place on release
+  document.querySelectorAll<HTMLElement>('[data-draggable-window]').forEach((wrapper) => {
+    const handle = wrapper.querySelector<HTMLElement>('[data-drag-handle]');
+    if (!handle) return;
+
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+
+    handle.addEventListener('pointerdown', (e: PointerEvent) => {
+      // Only drag with primary mouse button / touch
+      if (e.button !== 0) return;
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      wrapper.style.transition = 'none';
+      wrapper.style.zIndex = '30';
+      handle.setPointerCapture(e.pointerId);
+    });
+
+    handle.addEventListener('pointermove', (e: PointerEvent) => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      const rot = Math.max(-5, Math.min(5, dx * 0.03));
+      wrapper.style.transform = `translate3d(${dx}px, ${dy}px, 0) rotate(${rot}deg)`;
+    });
+
+    const endDrag = (e: PointerEvent) => {
+      if (!isDragging) return;
+      isDragging = false;
+      try {
+        handle.releasePointerCapture(e.pointerId);
+      } catch {
+        // Pointer already released
+      }
+      // Elastic spring snap-back
+      wrapper.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      wrapper.style.transform = 'translate3d(0px, 0px, 0px) rotate(0deg)';
+
+      setTimeout(() => {
+        wrapper.style.transition = '';
+        wrapper.style.zIndex = '';
+      }, 500);
+    };
+
+    handle.addEventListener('pointerup', endDrag);
+    handle.addEventListener('pointercancel', endDrag);
+  });
+</script>

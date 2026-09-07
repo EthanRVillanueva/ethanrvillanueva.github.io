@@ -11,10 +11,10 @@ describe('BaseLayout and Global Styles', () => {
     expect(css).toContain('--font-heading:');
     expect(css).toContain('--font-body:');
     expect(css).toContain('--font-mono:');
-    expect(css).toContain('#2B7A78'); // light accent
-    expect(css).toContain('#4ECDC4'); // dark accent
+    expect(css).toContain('#15803D'); // light accent
+    expect(css).toContain('#34D399'); // dark accent
     expect(css).toContain('#FAFAF8'); // light bg
-    expect(css).toContain('#151520'); // dark bg
+    expect(css).toContain('#121614'); // dark bg
     expect(css).toContain('prefers-reduced-motion');
   });
 
