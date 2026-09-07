@@ -30,7 +30,7 @@
           <input type="hidden" name="from_name" value="Portfolio Visitor" />
 
           <!-- Honeypot Botcheck -->
-          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -122,7 +122,7 @@
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!result || !submitBtn) return;
+    if (!form || !result || !submitBtn) return;
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';

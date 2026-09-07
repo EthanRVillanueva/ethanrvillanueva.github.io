@@ -17,6 +17,7 @@ describe('Project Scaffolding', () => {
   });
 
   it('has removed old HTML5 UP template root HTML files', () => {
+    expect(!fs.existsSync('index.html')).toBe(true);
     expect(fs.existsSync(path.resolve('aboutme.html'))).toBe(false);
     expect(fs.existsSync(path.resolve('projects.html'))).toBe(false);
     expect(fs.existsSync(path.resolve('workexperience.html'))).toBe(false);
