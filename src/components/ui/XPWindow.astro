@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+  icon?: string;
+  menuBar?: boolean;
+}
+
+const { title, icon = '📝', menuBar = true } = Astro.props;
+---
+
+<div class="xp-wrapper shadow-lg rounded-sm overflow-hidden border border-(--color-border)">
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text flex items-center gap-1.5 font-bold">
+        {icon && <span aria-hidden="true">{icon}</span>}
+        <span>{title}</span>
+      </div>
+      <div class="title-bar-controls" aria-hidden="true">
+        <button aria-label="Minimize" tabindex="-1"></button>
+        <button aria-label="Maximize" tabindex="-1"></button>
+        <button aria-label="Close" tabindex="-1"></button>
+      </div>
+    </div>
+
+    {menuBar && (
+      <div class="xp-menu-bar select-none px-2 py-1 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] dark:bg-[#2A2A3C] dark:border-[#3E3E54] dark:text-[#E8E6E3] flex gap-3 text-[#1C1C1C]">
+        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">File</span>
+        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">Edit</span>
+        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">Format</span>
+        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">View</span>
+        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">Help</span>
+      </div>
+    )}
+
+    <div class="window-body bg-white dark:bg-(--color-bg-surface) text-(--color-text-primary) p-4 sm:p-6 transition-colors">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  @import "xp.css/dist/XP.css";
+
+  /* Scoped XP adjustments and dark mode adaptivity */
+  .xp-wrapper .window {
+    width: 100%;
+    margin: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  :global(.dark) .xp-wrapper .window {
+    background: #1E1E2E;
+    border-color: #3A3A4E;
+  }
+
+  :global(.dark) .xp-wrapper .title-bar {
+    background: linear-gradient(180deg, #3A3A52 0%, #252538 100%);
+  }
+
+  .title-bar-controls button {
+    pointer-events: none;
+  }
+</style>

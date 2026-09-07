@@ -1,0 +1,58 @@
+---
+interface Props {
+  size?: number;
+}
+
+const { size = 32 } = Astro.props;
+---
+
+<div
+  class="inline-block hover:rotate-6 hover:scale-110 transition-transform duration-200 cursor-default"
+  title="Badtz-Maru says hi!"
+  aria-hidden="true"
+>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="pixel-art"
+  >
+    <!-- Badtz-Maru Pixel Silhouette -->
+    <!-- Spiky Hair / Head crest -->
+    <rect x="14" y="2" width="4" height="4" fill="#1C1C1C" />
+    <rect x="8" y="4" width="4" height="4" fill="#1C1C1C" />
+    <rect x="20" y="4" width="4" height="4" fill="#1C1C1C" />
+    <rect x="4" y="8" width="4" height="4" fill="#1C1C1C" />
+    <rect x="24" y="8" width="4" height="4" fill="#1C1C1C" />
+
+    <!-- Head Body -->
+    <rect x="6" y="10" width="20" height="14" fill="#1C1C1C" />
+
+    <!-- White Eyes -->
+    <rect x="8" y="12" width="6" height="5" fill="#FFFFFF" />
+    <rect x="18" y="12" width="6" height="5" fill="#FFFFFF" />
+
+    <!-- Black Pupils (Badtz mischievous side-glance) -->
+    <rect x="12" y="13" width="2" height="3" fill="#1C1C1C" />
+    <rect x="22" y="13" width="2" height="3" fill="#1C1C1C" />
+
+    <!-- Yellow Beak -->
+    <polygon points="12,17 20,17 16,22" fill="#F4C430" />
+
+    <!-- Body & Belly -->
+    <rect x="8" y="22" width="16" height="6" fill="#1C1C1C" />
+    <rect x="12" y="22" width="8" height="5" fill="#FFFFFF" />
+
+    <!-- Yellow Feet -->
+    <rect x="9" y="28" width="4" height="2" fill="#F4C430" />
+    <rect x="19" y="28" width="4" height="2" fill="#F4C430" />
+  </svg>
+</div>
+
+<style>
+  .pixel-art {
+    shape-rendering: crispEdges;
+  }
+</style>
