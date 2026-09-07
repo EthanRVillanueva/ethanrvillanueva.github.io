@@ -422,7 +422,9 @@ This section stays light and scannable. No need for the full detail that was on 
 
 ### 6.1 XP Window Component (`XPWindow.astro`)
 
-A reusable component that wraps any content in a Windows XP window chrome.
+A reusable component that wraps any content in a Windows XP window chrome, **powered by the [XP.css](https://github.com/botoxparty/XP.css) open-source library** (MIT license).
+
+**Install:** `npm install xp.css`
 
 **Props:**
 - `title: string` — window title text (e.g., "about_ethan.txt - Notepad")
@@ -430,16 +432,15 @@ A reusable component that wraps any content in a Windows XP window chrome.
 - `menuBar?: boolean` — whether to show the File/Edit/Format/View/Help bar (default: true)
 
 **Implementation notes:**
-- Pure CSS — no JavaScript needed
-- Title bar gradient via `linear-gradient`
-- Window buttons are decorative `<span>` elements with background colours
-- Responds to dark mode: title bar gradient shifts to muted blue-grey, content area uses dark surface
-- Border and shadow adapt per theme
+- Import XP.css scoped to the component only — do NOT import it globally (it overrides form elements, buttons, etc. site-wide). Use Astro's scoped `<style>` or wrap in a container class and import only the window/title-bar portion of the stylesheet.
+- The component outputs semantic HTML using XP.css's expected structure (`.window`, `.title-bar`, `.title-bar-text`, `.title-bar-controls`, `.window-body`)
+- Window buttons are decorative only, not interactive
 - Content is a `<slot>` — any Astro content can be placed inside
+- Dark mode adaptation: wrap in a container that adjusts background/border colours via Tailwind `dark:` classes, layered on top of XP.css's base styles
 
 ### 6.2 Terminal Window Component (`TerminalWindow.astro`)
 
-A reusable component that wraps content in a macOS-style terminal chrome.
+A reusable component that wraps content in a macOS-style terminal chrome. **Custom-built — no library needed** (it's ~20 lines of CSS).
 
 **Props:**
 - `title?: string` — title bar text (default: "ethan@portfolio: ~")
