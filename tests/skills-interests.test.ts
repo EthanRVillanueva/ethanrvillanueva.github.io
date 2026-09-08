@@ -18,9 +18,10 @@ describe('Skills and Interests Sections', () => {
     expect(content).toContain('Always learning...');
   });
 
-  it('Interests component covers Robotics, Powerlifting, and Systems/Mechanical craft', () => {
+  it('Interests component covers Powerlifting, Poker & Chess, and Music', () => {
     const content = fs.readFileSync(path.resolve('src/components/Interests.astro'), 'utf-8');
-    expect(content).toContain('Robotics');
-    expect(content).toContain('Powerlifting');
+    expect(content).toContain('Competitive Powerlifting');
+    expect(content).toContain('Poker & Chess');
+    expect(content).toContain('Music');
   });
 });
