@@ -8,10 +8,7 @@ interface Props {
 const { title, icon = '📝', menuBar = true } = Astro.props;
 ---
 
-<div
-  class="xp-wrapper relative shadow-lg rounded-sm border border-(--color-border) select-none transition-all duration-300"
-  data-draggable-window
->
+<div class="xp-container relative">
   <!-- Restore notification toast -->
   <div
     class="xp-restore-toast hidden absolute -top-12 left-1/2 -translate-x-1/2 z-50 bg-[#FFFFE1] border border-[#7F9DB9] text-[#1C1C1C] text-xs px-3 py-1.5 rounded-sm shadow-md flex items-center gap-2 pointer-events-none"
@@ -20,6 +17,11 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     <span class="text-blue-600 font-bold" aria-hidden="true">ℹ️</span>
     <span class="font-sans">Restoring about_ethan.txt...</span>
   </div>
+
+  <div
+    class="xp-wrapper relative shadow-lg rounded-sm border border-(--color-border) select-none transition-all duration-300"
+    data-draggable-window
+  >
 
   <!-- Clipboard / Action confirmation toast -->
   <div
@@ -221,6 +223,7 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     </div>
   </div>
 </div>
+</div>
 
 <style>
   @import "xp.css/dist/XP.css";
@@ -274,10 +277,10 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
 
   /* Closing animation */
   .xp-wrapper.xp-closing {
-    opacity: 0;
-    transform: scale(0.95);
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0 !important;
+    transform: scale(0.95) !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
   }
 
   /* Monospace vs Sans font toggles */
@@ -416,7 +419,7 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     const handle = wrapper.querySelector<HTMLElement>('[data-drag-handle]');
     const body = wrapper.querySelector<HTMLElement>('[data-window-body]');
     const statusBar = wrapper.querySelector<HTMLElement>('[data-status-bar]');
-    const restoreToast = wrapper.querySelector<HTMLElement>('[data-restore-toast]');
+    const restoreToast = wrapper.querySelector<HTMLElement>('[data-restore-toast]') || wrapper.parentElement?.querySelector<HTMLElement>('[data-restore-toast]');
     const actionToast = wrapper.querySelector<HTMLElement>('[data-action-toast]');
     const actionToastText = wrapper.querySelector<HTMLElement>('[data-action-toast-text]');
     const btnMin = wrapper.querySelector<HTMLButtonElement>('[data-btn-minimize]');
@@ -492,6 +495,12 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     function triggerCloseAndRestore() {
       if (isClosing) return;
       isClosing = true;
+
+      // Cleanly clear any lingering inline styles
+      wrapper.style.opacity = '';
+      wrapper.style.transform = '';
+      wrapper.style.transition = '';
+
       wrapper.classList.add('xp-closing');
 
       if (restoreToast) {
@@ -507,9 +516,12 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         wrapper.style.transition = 'transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease';
         wrapper.style.opacity = '1';
         wrapper.style.transform = 'scale(1)';
-        isClosing = false;
+
         setTimeout(() => {
           wrapper.style.transition = '';
+          wrapper.style.opacity = '';
+          wrapper.style.transform = '';
+          isClosing = false;
         }, 500);
       }, 1500);
     }
@@ -666,7 +678,8 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     let startY = 0;
 
     handle.addEventListener('pointerdown', (e: PointerEvent) => {
-      // Don't drag when clicking title bar controls or buttons
+      // Don't drag when closing or clicking title bar controls or buttons
+      if (isClosing) return;
       if ((e.target as HTMLElement).closest('.title-bar-controls')) return;
       if (e.button !== 0) return;
       isDragging = true;
@@ -699,6 +712,7 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
 
       setTimeout(() => {
         wrapper.style.transition = '';
+        wrapper.style.transform = '';
         wrapper.style.zIndex = '';
       }, 500);
     };
