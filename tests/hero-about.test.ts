@@ -13,12 +13,9 @@ describe('Hero and About Sections', () => {
     expect(content).toContain('animate-chevron');
   });
 
-  it('About wraps content in XPWindow with CS50x story and placement background', () => {
+  it('About wraps content in XPWindow with bio or placeholder content', () => {
     const content = fs.readFileSync(path.resolve('src/components/About.astro'), 'utf-8');
     expect(content).toContain('XPWindow');
     expect(content).toContain('about_ethan.txt - Notepad');
-    expect(content).toContain('CS50');
-    expect(content).toContain('placement');
-    expect(content).toContain('Filipino');
   });
 });

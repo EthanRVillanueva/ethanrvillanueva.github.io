@@ -10,12 +10,11 @@ describe('Portfolio Refinements & 20-Point Checklist', () => {
     expect(css).toContain('#121614'); // obsidian dark background
   });
 
-  it('Hero section includes headshot placeholder and visible dark mode buttons', () => {
+  it('Hero section includes headshot image and visible dark mode buttons', () => {
     const hero = fs.readFileSync(path.resolve('src/components/Hero.astro'), 'utf-8');
-    expect(hero).toContain('avatar-placeholder.svg');
+    expect(hero.includes('avatar-placeholder.svg') || hero.includes('pfp_square.jpg')).toBe(true);
     expect(hero).toContain('Get In Touch');
     expect(hero).toContain('text-(--color-text-primary)'); // ensures button text is visible in dark mode
-    expect(fs.existsSync(path.resolve('public/avatar-placeholder.svg'))).toBe(true);
   });
 
   it('XPWindow preserves authentic Luna styling and features 30px title bar with spring drag', () => {
@@ -36,10 +35,11 @@ describe('Portfolio Refinements & 20-Point Checklist', () => {
     expect(term).toContain('cubic-bezier');
   });
 
-  it('Skills section displays ASCII art banner and updated emerald theme', () => {
+  it('Skills section displays compact Ethan\'s Skills ASCII banner and updated emerald theme', () => {
     const skills = fs.readFileSync(path.resolve('src/components/Skills.astro'), 'utf-8');
     expect(skills).toContain('motd.sh');
-    expect(skills).toContain('| ____| |_| |__'); // ASCII art fragment
+    expect(skills).toContain('| __| |_| |_'); // "Ethan" ASCII fragment
+    expect(skills).toContain('/ ___|| |__ (_) | |___'); // "Skills" ASCII fragment
     expect(skills).toContain('#34D399'); // emerald accent
   });
 

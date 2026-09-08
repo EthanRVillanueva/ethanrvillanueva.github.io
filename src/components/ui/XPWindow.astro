@@ -9,35 +9,215 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
 ---
 
 <div
-  class="xp-wrapper shadow-lg rounded-sm border border-(--color-border) select-none"
+  class="xp-wrapper relative shadow-lg rounded-sm border border-(--color-border) select-none transition-all duration-300"
   data-draggable-window
 >
+  <!-- Restore notification toast -->
+  <div
+    class="xp-restore-toast hidden absolute -top-12 left-1/2 -translate-x-1/2 z-50 bg-[#FFFFE1] border border-[#7F9DB9] text-[#1C1C1C] text-xs px-3 py-1.5 rounded-sm shadow-md flex items-center gap-2 pointer-events-none"
+    data-restore-toast
+  >
+    <span class="text-blue-600 font-bold" aria-hidden="true">ℹ️</span>
+    <span class="font-sans">Restoring about_ethan.txt...</span>
+  </div>
+
+  <!-- Clipboard / Action confirmation toast -->
+  <div
+    class="xp-action-toast hidden absolute top-10 right-4 z-50 bg-[#FFFFE1] border border-[#7F9DB9] text-[#1C1C1C] text-xs px-3 py-1.5 rounded-sm shadow-md flex items-center gap-1.5 pointer-events-none transition-opacity duration-200"
+    data-action-toast
+  >
+    <span class="text-green-600 font-bold">✓</span>
+    <span data-action-toast-text>Copied to clipboard!</span>
+  </div>
+
   <div class="window">
-    <div class="title-bar cursor-grab active:cursor-grabbing" data-drag-handle>
+    <div class="title-bar cursor-grab active:cursor-grabbing flex items-center justify-between" data-drag-handle>
       <div class="title-bar-text flex items-center gap-1.5 font-bold">
         {icon && <span aria-hidden="true">{icon}</span>}
         <span>{title}</span>
       </div>
-      <div class="title-bar-controls" aria-hidden="true">
-        <button aria-label="Minimize" tabindex="-1"></button>
-        <button aria-label="Maximize" tabindex="-1"></button>
-        <button aria-label="Close" tabindex="-1"></button>
+      <div class="title-bar-controls flex items-center" data-title-controls>
+        <button type="button" aria-label="Minimize" data-btn-minimize title="Minimize"></button>
+        <button type="button" aria-label="Maximize" data-btn-maximize title="Maximize"></button>
+        <button type="button" aria-label="Close" data-btn-close title="Close"></button>
       </div>
     </div>
 
     {menuBar && (
-      <div class="xp-menu-bar select-none px-2 py-1 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] flex gap-3 text-[#1C1C1C]">
-        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">File</span>
-        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">Edit</span>
-        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">Format</span>
-        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">View</span>
-        <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-default rounded-xs">Help</span>
+      <div class="xp-menu-bar select-none px-1.5 py-0.5 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] flex items-center gap-1 text-[#1C1C1C] relative z-20">
+        <!-- File Menu -->
+        <div class="xp-menu-item relative" data-menu="file">
+          <button
+            type="button"
+            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            data-menu-trigger="file"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="underline">F</span>ile
+          </button>
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="save">
+              <span>Save As...</span>
+              <span class="text-[10px] opacity-70 ml-3">Ctrl+S</span>
+            </button>
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="print">
+              <span>Print...</span>
+              <span class="text-[10px] opacity-70 ml-3">Ctrl+P</span>
+            </button>
+            <div class="border-t border-[#aca899] my-1 mx-1 border-b border-b-white"></div>
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="exit">
+              <span>Exit</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Edit Menu -->
+        <div class="xp-menu-item relative" data-menu="edit">
+          <button
+            type="button"
+            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            data-menu-trigger="edit"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="underline">E</span>dit
+          </button>
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="copy">
+              <span>Copy All</span>
+              <span class="text-[10px] opacity-70 ml-3">Ctrl+C</span>
+            </button>
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="select-all">
+              <span>Select All</span>
+              <span class="text-[10px] opacity-70 ml-3">Ctrl+A</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Format Menu -->
+        <div class="xp-menu-item relative" data-menu="format">
+          <button
+            type="button"
+            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            data-menu-trigger="format"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            F<span class="underline">o</span>rmat
+          </button>
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex items-center justify-between text-xs" data-action="toggle-wrap">
+              <span class="flex items-center gap-1.5">
+                <span data-check-wrap class="w-3 inline-block font-bold">✓</span>
+                <span>Word Wrap</span>
+              </span>
+            </button>
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex items-center justify-between text-xs" data-action="toggle-font">
+              <span class="flex items-center gap-1.5">
+                <span data-check-font class="w-3 inline-block font-bold"></span>
+                <span>Toggle Font</span>
+              </span>
+              <span class="text-[10px] opacity-70 ml-2" data-font-indicator>Mono</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- View Menu -->
+        <div class="xp-menu-item relative" data-menu="view">
+          <button
+            type="button"
+            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            data-menu-trigger="view"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="underline">V</span>iew
+          </button>
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex items-center text-xs" data-action="toggle-status">
+              <span class="flex items-center gap-1.5">
+                <span data-check-status class="w-3 inline-block font-bold">✓</span>
+                <span>Status Bar</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Help Menu -->
+        <div class="xp-menu-item relative" data-menu="help">
+          <button
+            type="button"
+            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            data-menu-trigger="help"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="underline">H</span>elp
+          </button>
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white text-xs" data-action="about">
+              About Notepad
+            </button>
+          </div>
+        </div>
       </div>
     )}
 
     <!-- Notepad inner body: changes to dark background in dark mode while window frame stays authentic XP -->
-    <div class="window-body select-text bg-white dark:bg-(--color-bg-surface) text-(--color-text-primary) p-4 sm:p-6 transition-colors">
+    <div
+      class="window-body select-text bg-white dark:bg-(--color-bg-surface) text-(--color-text-primary) p-4 sm:p-6 transition-all duration-200 overflow-y-auto"
+      data-window-body
+    >
       <slot />
+    </div>
+
+    <!-- Authentic Classic Windows XP Status Bar -->
+    <div class="status-bar select-none text-xs" data-status-bar>
+      <p class="status-bar-field">Ln 1, Col 1</p>
+      <p class="status-bar-field hidden sm:block">100%</p>
+      <p class="status-bar-field hidden sm:block">Windows (CRLF)</p>
+      <p class="status-bar-field">UTF-8</p>
+    </div>
+  </div>
+
+  <!-- Authentic Windows XP About Notepad Dialog Modal -->
+  <div
+    class="xp-about-modal hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4"
+    data-about-modal
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="about-notepad-title"
+  >
+    <div class="window max-w-sm w-full shadow-2xl bg-[#ece9d8] border border-[#0055ea]">
+      <div class="title-bar flex items-center justify-between">
+        <div class="title-bar-text flex items-center gap-1.5 font-bold" id="about-notepad-title">
+          <span>About Notepad</span>
+        </div>
+        <div class="title-bar-controls">
+          <button type="button" aria-label="Close" data-about-close></button>
+        </div>
+      </div>
+      <div class="window-body p-4 space-y-4 bg-[#ece9d8] text-[#1C1C1C] text-xs">
+        <div class="flex items-start gap-3 border-b border-[#aca899] pb-3">
+          <span class="text-3xl" aria-hidden="true">📝</span>
+          <div>
+            <div class="font-bold text-sm">Microsoft® Windows® Notepad</div>
+            <div class="text-[11px] text-gray-700">Ethan Villanueva Portfolio Edition</div>
+            <div class="text-[10px] text-gray-500 mt-0.5">Version 2026.1 (Build 2600.xpsp_sp3_gdr)</div>
+          </div>
+        </div>
+        <div class="space-y-1 text-[11px] leading-relaxed text-gray-800">
+          <p>Computer Science student at University of Nottingham.</p>
+          <p>Software Engineer · Competitive Powerlifter · Builder.</p>
+          <p class="text-[10px] text-gray-500 pt-1">This product is licensed under the MIT License.</p>
+        </div>
+        <div class="flex justify-end pt-1">
+          <button type="button" class="px-5 py-1 text-xs cursor-pointer" data-about-close>
+            OK
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -68,14 +248,278 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
   }
 
   .title-bar-controls button {
+    cursor: pointer;
+  }
+
+  /* Minimized state: collapse window body and extra chrome */
+  .xp-wrapper.is-minimized .window-body,
+  .xp-wrapper.is-minimized .status-bar,
+  .xp-wrapper.is-minimized .xp-menu-bar {
+    display: none !important;
+  }
+
+  .xp-wrapper.is-minimized .title-bar {
+    cursor: pointer;
+  }
+
+  /* Maximized state: expand within container with heightened view */
+  .xp-wrapper.is-maximized {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .xp-wrapper.is-maximized .window-body {
+    min-height: 380px;
+  }
+
+  /* Closing animation */
+  .xp-wrapper.xp-closing {
+    opacity: 0;
+    transform: scale(0.95);
     pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Monospace vs Sans font toggles */
+  .xp-wrapper .window-body.use-mono {
+    font-family: "Lucida Console", "Courier New", monospace !important;
+    font-size: 13px;
+  }
+
+  /* Word wrap toggle */
+  .xp-wrapper .window-body.no-wrap {
+    white-space: pre !important;
+    overflow-x: auto !important;
   }
 </style>
 
 <script>
-  // Spring drag micro-interaction: drag anywhere, snaps smoothly back into place on release
   document.querySelectorAll<HTMLElement>('[data-draggable-window]').forEach((wrapper) => {
     const handle = wrapper.querySelector<HTMLElement>('[data-drag-handle]');
+    const body = wrapper.querySelector<HTMLElement>('[data-window-body]');
+    const statusBar = wrapper.querySelector<HTMLElement>('[data-status-bar]');
+    const restoreToast = wrapper.querySelector<HTMLElement>('[data-restore-toast]');
+    const actionToast = wrapper.querySelector<HTMLElement>('[data-action-toast]');
+    const actionToastText = wrapper.querySelector<HTMLElement>('[data-action-toast-text]');
+    const btnMin = wrapper.querySelector<HTMLButtonElement>('[data-btn-minimize]');
+    const btnMax = wrapper.querySelector<HTMLButtonElement>('[data-btn-maximize]');
+    const btnClose = wrapper.querySelector<HTMLButtonElement>('[data-btn-close]');
+    const aboutModal = wrapper.querySelector<HTMLElement>('[data-about-modal]');
+    const checkWrap = wrapper.querySelector<HTMLElement>('[data-check-wrap]');
+    const checkFont = wrapper.querySelector<HTMLElement>('[data-check-font]');
+    const checkStatus = wrapper.querySelector<HTMLElement>('[data-check-status]');
+    const fontIndicator = wrapper.querySelector<HTMLElement>('[data-font-indicator]');
+
+    let isMinimized = false;
+    let isMaximized = false;
+    let isClosing = false;
+    let isWordWrap = true;
+    let isMonoFont = false;
+    let isStatusBarVisible = true;
+
+    // Toast helper
+    function showActionToast(msg: string) {
+      if (!actionToast || !actionToastText) return;
+      actionToastText.textContent = msg;
+      actionToast.classList.remove('hidden');
+      actionToast.style.opacity = '1';
+      setTimeout(() => {
+        actionToast.style.opacity = '0';
+        setTimeout(() => actionToast.classList.add('hidden'), 200);
+      }, 1800);
+    }
+
+    // Window Controls: Minimize
+    function toggleMinimize() {
+      isMinimized = !isMinimized;
+      if (isMinimized) {
+        wrapper.classList.add('is-minimized');
+      } else {
+        wrapper.classList.remove('is-minimized');
+      }
+    }
+
+    btnMin?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMinimize();
+    });
+
+    // Clicking title bar restores if minimized
+    handle?.addEventListener('click', (e) => {
+      if (isMinimized && !(e.target as HTMLElement).closest('.title-bar-controls')) {
+        toggleMinimize();
+      }
+    });
+
+    // Window Controls: Maximize
+    function toggleMaximize() {
+      isMaximized = !isMaximized;
+      if (isMaximized) {
+        wrapper.classList.add('is-maximized');
+        btnMax?.setAttribute('aria-label', 'Restore');
+        btnMax?.setAttribute('title', 'Restore');
+      } else {
+        wrapper.classList.remove('is-maximized');
+        btnMax?.setAttribute('aria-label', 'Maximize');
+        btnMax?.setAttribute('title', 'Maximize');
+      }
+    }
+
+    btnMax?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMaximize();
+    });
+
+    // Window Controls: Playful Close & Restore
+    function triggerCloseAndRestore() {
+      if (isClosing) return;
+      isClosing = true;
+      wrapper.classList.add('xp-closing');
+
+      if (restoreToast) {
+        restoreToast.classList.remove('hidden');
+      }
+
+      setTimeout(() => {
+        wrapper.classList.remove('xp-closing');
+        if (restoreToast) {
+          restoreToast.classList.add('hidden');
+        }
+        // Playful spring bounce restore
+        wrapper.style.transition = 'transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease';
+        wrapper.style.opacity = '1';
+        wrapper.style.transform = 'scale(1)';
+        isClosing = false;
+        setTimeout(() => {
+          wrapper.style.transition = '';
+        }, 500);
+      }, 1500);
+    }
+
+    btnClose?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerCloseAndRestore();
+    });
+
+    // Dropdown Menus Management
+    const dropdownTriggers = wrapper.querySelectorAll<HTMLButtonElement>('[data-menu-trigger]');
+    const dropdowns = wrapper.querySelectorAll<HTMLElement>('.xp-dropdown');
+
+    function closeAllDropdowns() {
+      dropdowns.forEach((d) => d.classList.add('hidden'));
+      dropdownTriggers.forEach((t) => t.setAttribute('aria-expanded', 'false'));
+    }
+
+    dropdownTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const menuKey = trigger.dataset.menuTrigger;
+        const targetDropdown = wrapper.querySelector<HTMLElement>(`[data-menu="${menuKey}"] .xp-dropdown`);
+        const isOpen = targetDropdown && !targetDropdown.classList.contains('hidden');
+
+        closeAllDropdowns();
+
+        if (!isOpen && targetDropdown) {
+          targetDropdown.classList.remove('hidden');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!wrapper.contains(e.target as Node)) {
+        closeAllDropdowns();
+      }
+    });
+
+    // Menu Actions
+    wrapper.querySelectorAll<HTMLElement>('[data-action]').forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllDropdowns();
+        const action = item.dataset.action;
+
+        if (action === 'save') {
+          const bioContent = body?.innerText || '';
+          const blob = new Blob([bioContent], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'about_ethan.txt';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          showActionToast('Saved about_ethan.txt!');
+        } else if (action === 'print') {
+          window.print();
+        } else if (action === 'exit') {
+          triggerCloseAndRestore();
+        } else if (action === 'copy') {
+          const bioContent = body?.innerText || '';
+          navigator.clipboard.writeText(bioContent).then(() => {
+            showActionToast('Bio copied to clipboard!');
+          }).catch(() => {
+            showActionToast('Could not access clipboard.');
+          });
+        } else if (action === 'select-all') {
+          if (body) {
+            const range = document.createRange();
+            range.selectNodeContents(body);
+            const sel = window.getSelection();
+            sel?.removeAllRanges();
+            sel?.addRange(range);
+            showActionToast('All text selected!');
+          }
+        } else if (action === 'toggle-wrap') {
+          isWordWrap = !isWordWrap;
+          if (isWordWrap) {
+            body?.classList.remove('no-wrap');
+            if (checkWrap) checkWrap.textContent = '✓';
+          } else {
+            body?.classList.add('no-wrap');
+            if (checkWrap) checkWrap.textContent = '';
+          }
+        } else if (action === 'toggle-font') {
+          isMonoFont = !isMonoFont;
+          if (isMonoFont) {
+            body?.classList.add('use-mono');
+            if (checkFont) checkFont.textContent = '✓';
+            if (fontIndicator) fontIndicator.textContent = 'Mono';
+          } else {
+            body?.classList.remove('use-mono');
+            if (checkFont) checkFont.textContent = '';
+            if (fontIndicator) fontIndicator.textContent = 'Sans';
+          }
+        } else if (action === 'toggle-status') {
+          isStatusBarVisible = !isStatusBarVisible;
+          if (isStatusBarVisible) {
+            statusBar?.classList.remove('hidden');
+            if (checkStatus) checkStatus.textContent = '✓';
+          } else {
+            statusBar?.classList.add('hidden');
+            if (checkStatus) checkStatus.textContent = '';
+          }
+        } else if (action === 'about') {
+          aboutModal?.classList.remove('hidden');
+        }
+      });
+    });
+
+    // About Dialog Close
+    wrapper.querySelectorAll<HTMLElement>('[data-about-close]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        aboutModal?.classList.add('hidden');
+      });
+    });
+
+    aboutModal?.addEventListener('click', (e) => {
+      if (e.target === aboutModal) {
+        aboutModal.classList.add('hidden');
+      }
+    });
+
+    // Spring drag micro-interaction: drag anywhere on title bar, snaps smoothly back into place on release
     if (!handle) return;
 
     let isDragging = false;
@@ -83,7 +527,8 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     let startY = 0;
 
     handle.addEventListener('pointerdown', (e: PointerEvent) => {
-      // Only drag with primary mouse button / touch
+      // Don't drag when clicking title bar controls or buttons
+      if ((e.target as HTMLElement).closest('.title-bar-controls')) return;
       if (e.button !== 0) return;
       isDragging = true;
       startX = e.clientX;
@@ -123,3 +568,4 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     handle.addEventListener('pointercancel', endDrag);
   });
 </script>
+
