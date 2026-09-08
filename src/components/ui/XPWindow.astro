@@ -44,29 +44,29 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     </div>
 
     {menuBar && (
-      <div class="xp-menu-bar select-none px-2 py-1 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] flex items-center gap-3 text-[#1C1C1C] relative z-20">
+      <div class="xp-menu-bar select-none px-1 py-0.5 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] flex items-center gap-0 text-[#000000] relative z-20">
         <!-- File Menu -->
         <div class="xp-menu-item relative" data-menu="file">
           <button
             type="button"
-            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
+            class="xp-menu-btn"
             data-menu-trigger="file"
             aria-haspopup="true"
             aria-expanded="false"
           >
             File
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="save">
+          <div class="xp-dropdown hidden absolute left-0 top-[calc(100%-1px)] bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#000000]">
+            <button type="button" class="xp-dropdown-item w-full flex justify-between items-center" data-action="save">
               <span>Save As...</span>
-              <span class="text-[10px] text-gray-500 hover:text-white ml-3">Ctrl+S</span>
+              <span class="text-[10px] text-gray-500 ml-3">Ctrl+S</span>
             </button>
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="print">
+            <button type="button" class="xp-dropdown-item w-full flex justify-between items-center" data-action="print">
               <span>Print...</span>
-              <span class="text-[10px] text-gray-500 hover:text-white ml-3">Ctrl+P</span>
+              <span class="text-[10px] text-gray-500 ml-3">Ctrl+P</span>
             </button>
-            <div class="border-t border-[#d4d0c8] my-1 mx-1"></div>
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="exit">
+            <div class="xp-menu-separator border-t border-[#d4d0c8] my-1 mx-1"></div>
+            <button type="button" class="xp-dropdown-item w-full flex justify-between items-center" data-action="exit">
               <span>Exit</span>
             </button>
           </div>
@@ -76,21 +76,21 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         <div class="xp-menu-item relative" data-menu="edit">
           <button
             type="button"
-            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
+            class="xp-menu-btn"
             data-menu-trigger="edit"
             aria-haspopup="true"
             aria-expanded="false"
           >
             Edit
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="copy">
+          <div class="xp-dropdown hidden absolute left-0 top-[calc(100%-1px)] bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#000000]">
+            <button type="button" class="xp-dropdown-item w-full flex justify-between items-center" data-action="copy">
               <span>Copy All</span>
-              <span class="text-[10px] text-gray-500 hover:text-white ml-3">Ctrl+C</span>
+              <span class="text-[10px] text-gray-500 ml-3">Ctrl+C</span>
             </button>
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="select-all">
+            <button type="button" class="xp-dropdown-item w-full flex justify-between items-center" data-action="select-all">
               <span>Select All</span>
-              <span class="text-[10px] text-gray-500 hover:text-white ml-3">Ctrl+A</span>
+              <span class="text-[10px] text-gray-500 ml-3">Ctrl+A</span>
             </button>
           </div>
         </div>
@@ -99,26 +99,26 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         <div class="xp-menu-item relative" data-menu="format">
           <button
             type="button"
-            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
+            class="xp-menu-btn"
             data-menu-trigger="format"
             aria-haspopup="true"
             aria-expanded="false"
           >
             Format
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex items-center justify-between text-xs" data-action="toggle-wrap">
+          <div class="xp-dropdown hidden absolute left-0 top-[calc(100%-1px)] bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#000000]">
+            <button type="button" class="xp-dropdown-item w-full flex items-center justify-between" data-action="toggle-wrap">
               <span class="flex items-center gap-1.5">
                 <span data-check-wrap class="w-3 inline-block font-bold">✓</span>
                 <span>Word Wrap</span>
               </span>
             </button>
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex items-center justify-between text-xs" data-action="toggle-font">
+            <button type="button" class="xp-dropdown-item w-full flex items-center justify-between" data-action="toggle-font">
               <span class="flex items-center gap-1.5">
                 <span data-check-font class="w-3 inline-block font-bold"></span>
                 <span>Toggle Font</span>
               </span>
-              <span class="text-[10px] text-gray-500 hover:text-white ml-2" data-font-indicator>Mono</span>
+              <span class="text-[10px] text-gray-500 ml-2" data-font-indicator>Mono</span>
             </button>
           </div>
         </div>
@@ -127,15 +127,15 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         <div class="xp-menu-item relative" data-menu="view">
           <button
             type="button"
-            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
+            class="xp-menu-btn"
             data-menu-trigger="view"
             aria-haspopup="true"
             aria-expanded="false"
           >
             View
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex items-center text-xs" data-action="toggle-status">
+          <div class="xp-dropdown hidden absolute left-0 top-[calc(100%-1px)] bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#000000]">
+            <button type="button" class="xp-dropdown-item w-full flex items-center" data-action="toggle-status">
               <span class="flex items-center gap-1.5">
                 <span data-check-status class="w-3 inline-block font-bold">✓</span>
                 <span>Status Bar</span>
@@ -148,15 +148,15 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         <div class="xp-menu-item relative" data-menu="help">
           <button
             type="button"
-            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
+            class="xp-menu-btn"
             data-menu-trigger="help"
             aria-haspopup="true"
             aria-expanded="false"
           >
             Help
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
-            <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white text-xs" data-action="about">
+          <div class="xp-dropdown hidden absolute left-0 top-[calc(100%-1px)] bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#000000]">
+            <button type="button" class="xp-dropdown-item w-full text-left" data-action="about">
               About Notepad
             </button>
           </div>
@@ -292,10 +292,116 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     overflow-x: auto !important;
   }
 
-  /* Active Menu Button */
-  .xp-wrapper .xp-menu-btn.is-active {
+  /* Menu bar container: zero gap between buttons, touching edge-to-edge */
+  .xp-wrapper .xp-menu-bar {
+    background-color: #ece9d8;
+    border-bottom: 1px solid #d4d0c8;
+    padding: 1px 2px;
+    gap: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .xp-wrapper .xp-menu-item {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Reset generic XP.css button styling on menu bar triggers */
+  .xp-wrapper .xp-menu-btn {
+    all: unset;
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: default;
+    user-select: none;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    line-height: 14px;
+    color: #000000 !important;
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 2px 6px !important;
+    margin: 0 !important;
+    outline: none !important;
+  }
+
+  /* Hover state: authentic XP Luna light blue highlight */
+  .xp-wrapper .xp-menu-btn:hover {
+    background-color: #c1d2ee !important;
+    border: 1px solid #316ac5 !important;
+    color: #000000 !important;
+  }
+
+  /* Active / Open state: seamless white tab joining the dropdown, high-contrast black text */
+  .xp-wrapper .xp-menu-btn.is-active,
+  .xp-wrapper .xp-menu-btn[aria-expanded="true"] {
+    background-color: #ffffff !important;
+    border: 1px solid #716f64 !important;
+    border-bottom: 1px solid #ffffff !important;
+    color: #000000 !important;
+    position: relative;
+    z-index: 60;
+  }
+
+  .xp-wrapper .xp-menu-btn:focus,
+  .xp-wrapper .xp-menu-btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+  }
+
+  /* Dropdown container */
+  .xp-wrapper .xp-dropdown {
+    background-color: #ffffff !important;
+    border: 1px solid #716f64 !important;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) !important;
+    padding: 2px 0 !important;
+    min-width: 160px;
+    z-index: 50;
+  }
+
+  /* Reset generic XP.css button styling on dropdown items */
+  .xp-wrapper .xp-dropdown-item {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: default;
+    user-select: none;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    line-height: 14px;
+    color: #000000 !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 3px 18px 3px 20px !important;
+    width: 100%;
+  }
+
+  .xp-wrapper .xp-dropdown-item:hover {
     background-color: #316ac5 !important;
     color: #ffffff !important;
+  }
+
+  .xp-wrapper .xp-dropdown-item:hover span {
+    color: #ffffff !important;
+  }
+
+  /* Etched classic separator */
+  .xp-wrapper .xp-menu-separator {
+    height: 0;
+    border-top: 1px solid #aca899;
+    border-bottom: 1px solid #ffffff;
+    margin: 2px 1px;
   }
 
   /* Status Bar toggle - explicitly override xp.css display: flex */
@@ -438,6 +544,21 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
           targetDropdown.classList.remove('hidden');
           trigger.setAttribute('aria-expanded', 'true');
           trigger.classList.add('is-active');
+        }
+      });
+
+      // Authentic XP behavior: if any menu is already open, hovering another menu opens it
+      trigger.addEventListener('mouseenter', () => {
+        const anyOpen = Array.from(dropdowns).some((d) => !d.classList.contains('hidden'));
+        if (anyOpen) {
+          const menuKey = trigger.dataset.menuTrigger;
+          const targetDropdown = wrapper.querySelector<HTMLElement>(`[data-menu="${menuKey}"] .xp-dropdown`);
+          closeAllDropdowns();
+          if (targetDropdown) {
+            targetDropdown.classList.remove('hidden');
+            trigger.setAttribute('aria-expanded', 'true');
+            trigger.classList.add('is-active');
+          }
         }
       });
     });
