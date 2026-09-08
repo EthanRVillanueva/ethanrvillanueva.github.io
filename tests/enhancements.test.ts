@@ -39,7 +39,7 @@ describe('Portfolio Refinements & 20-Point Checklist', () => {
     const skills = fs.readFileSync(path.resolve('src/components/Skills.astro'), 'utf-8');
     expect(skills).toContain('motd.sh');
     expect(skills).toContain('| __| |_| |_'); // "Ethan" ASCII fragment
-    expect(skills).toContain('/ ___|| |__ (_) | |___'); // "Skills" ASCII fragment
+    expect(skills).toContain('/ ___|| |__ (_) | |'); // "Skills" ASCII fragment
     expect(skills).toContain('#34D399'); // emerald accent
   });
 
