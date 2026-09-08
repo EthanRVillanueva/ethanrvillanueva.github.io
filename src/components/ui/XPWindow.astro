@@ -44,28 +44,28 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     </div>
 
     {menuBar && (
-      <div class="xp-menu-bar select-none px-1.5 py-0.5 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] flex items-center gap-1 text-[#1C1C1C] relative z-20">
+      <div class="xp-menu-bar select-none px-2 py-1 text-xs border-b border-[#d4d0c8] bg-[#ece9d8] flex items-center gap-3 text-[#1C1C1C] relative z-20">
         <!-- File Menu -->
         <div class="xp-menu-item relative" data-menu="file">
           <button
             type="button"
-            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
             data-menu-trigger="file"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span class="underline">F</span>ile
+            File
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
             <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="save">
               <span>Save As...</span>
-              <span class="text-[10px] opacity-70 ml-3">Ctrl+S</span>
+              <span class="text-[10px] text-gray-500 hover:text-white ml-3">Ctrl+S</span>
             </button>
             <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="print">
               <span>Print...</span>
-              <span class="text-[10px] opacity-70 ml-3">Ctrl+P</span>
+              <span class="text-[10px] text-gray-500 hover:text-white ml-3">Ctrl+P</span>
             </button>
-            <div class="border-t border-[#aca899] my-1 mx-1 border-b border-b-white"></div>
+            <div class="border-t border-[#d4d0c8] my-1 mx-1"></div>
             <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="exit">
               <span>Exit</span>
             </button>
@@ -76,21 +76,21 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         <div class="xp-menu-item relative" data-menu="edit">
           <button
             type="button"
-            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
             data-menu-trigger="edit"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span class="underline">E</span>dit
+            Edit
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
             <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="copy">
               <span>Copy All</span>
-              <span class="text-[10px] opacity-70 ml-3">Ctrl+C</span>
+              <span class="text-[10px] text-gray-500 hover:text-white ml-3">Ctrl+C</span>
             </button>
             <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex justify-between items-center text-xs" data-action="select-all">
               <span>Select All</span>
-              <span class="text-[10px] opacity-70 ml-3">Ctrl+A</span>
+              <span class="text-[10px] text-gray-500 hover:text-white ml-3">Ctrl+A</span>
             </button>
           </div>
         </div>
@@ -99,14 +99,14 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         <div class="xp-menu-item relative" data-menu="format">
           <button
             type="button"
-            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
             data-menu-trigger="format"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            F<span class="underline">o</span>rmat
+            Format
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
             <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex items-center justify-between text-xs" data-action="toggle-wrap">
               <span class="flex items-center gap-1.5">
                 <span data-check-wrap class="w-3 inline-block font-bold">✓</span>
@@ -118,7 +118,7 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
                 <span data-check-font class="w-3 inline-block font-bold"></span>
                 <span>Toggle Font</span>
               </span>
-              <span class="text-[10px] opacity-70 ml-2" data-font-indicator>Mono</span>
+              <span class="text-[10px] text-gray-500 hover:text-white ml-2" data-font-indicator>Mono</span>
             </button>
           </div>
         </div>
@@ -127,14 +127,14 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         <div class="xp-menu-item relative" data-menu="view">
           <button
             type="button"
-            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
             data-menu-trigger="view"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span class="underline">V</span>iew
+            View
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
             <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white flex items-center text-xs" data-action="toggle-status">
               <span class="flex items-center gap-1.5">
                 <span data-check-status class="w-3 inline-block font-bold">✓</span>
@@ -148,14 +148,14 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         <div class="xp-menu-item relative" data-menu="help">
           <button
             type="button"
-            class="xp-menu-btn px-2 py-0.5 hover:bg-[#316ac5] hover:text-white rounded-xs cursor-default outline-none text-xs"
+            class="xp-menu-btn select-none px-1.5 py-0.5 text-xs text-[#1C1C1C] cursor-default rounded-xs hover:bg-[#316ac5] hover:text-white focus:outline-none transition-colors"
             data-menu-trigger="help"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span class="underline">H</span>elp
+            Help
           </button>
-          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-[#ece9d8] border border-[#7f9db9] shadow-lg py-1 min-w-[160px] z-50 text-[#1C1C1C]">
+          <div class="xp-dropdown hidden absolute left-0 top-full mt-0.5 bg-white border border-[#716f64] shadow-md py-1 min-w-[160px] z-50 text-[#1C1C1C]">
             <button type="button" class="xp-dropdown-item w-full text-left px-4 py-1 hover:bg-[#316ac5] hover:text-white text-xs" data-action="about">
               About Notepad
             </button>
@@ -291,6 +291,18 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
     white-space: pre !important;
     overflow-x: auto !important;
   }
+
+  /* Active Menu Button */
+  .xp-wrapper .xp-menu-btn.is-active {
+    background-color: #316ac5 !important;
+    color: #ffffff !important;
+  }
+
+  /* Status Bar toggle - explicitly override xp.css display: flex */
+  .xp-wrapper .status-bar.is-hidden,
+  .xp-wrapper .status-bar.hidden {
+    display: none !important;
+  }
 </style>
 
 <script>
@@ -407,7 +419,10 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
 
     function closeAllDropdowns() {
       dropdowns.forEach((d) => d.classList.add('hidden'));
-      dropdownTriggers.forEach((t) => t.setAttribute('aria-expanded', 'false'));
+      dropdownTriggers.forEach((t) => {
+        t.setAttribute('aria-expanded', 'false');
+        t.classList.remove('is-active');
+      });
     }
 
     dropdownTriggers.forEach((trigger) => {
@@ -422,6 +437,7 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         if (!isOpen && targetDropdown) {
           targetDropdown.classList.remove('hidden');
           trigger.setAttribute('aria-expanded', 'true');
+          trigger.classList.add('is-active');
         }
       });
     });
@@ -494,9 +510,11 @@ const { title, icon = '📝', menuBar = true } = Astro.props;
         } else if (action === 'toggle-status') {
           isStatusBarVisible = !isStatusBarVisible;
           if (isStatusBarVisible) {
+            statusBar?.classList.remove('is-hidden');
             statusBar?.classList.remove('hidden');
             if (checkStatus) checkStatus.textContent = '✓';
           } else {
+            statusBar?.classList.add('is-hidden');
             statusBar?.classList.add('hidden');
             if (checkStatus) checkStatus.textContent = '';
           }

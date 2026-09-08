@@ -12,158 +12,23 @@ const { size = 32 } = Astro.props;
   aria-hidden="true"
   data-badtz-maru
 >
-  <svg
+  <img
+    src="/badtzmaru.png"
+    alt="Badtz-Maru"
     width={size}
     height={size}
-    viewBox="0 0 64 64"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    class="badtz-maru-svg drop-shadow-xs"
-  >
-    <!-- Canonical 4 Spiky Hair Crests & Penguin Body Silhouette -->
-    <!-- Spike 1 (14, 8), Spike 2 (27, 4), Spike 3 (37, 4), Spike 4 (50, 8) -->
-    <path
-      d="M 12 28
-         L 13 8
-         L 22 18
-         L 27 4
-         L 32 16
-         L 37 4
-         L 42 18
-         L 51 8
-         L 52 28
-         C 57 33, 58 43, 54 50
-         C 52 54, 46 56, 42 56
-         C 38 57, 26 57, 22 56
-         C 18 56, 12 54, 10 50
-         C 6 43, 7 33, 12 28 Z"
-      fill="#1C1C1C"
-      stroke="#1C1C1C"
-      stroke-width="1.5"
-      stroke-linejoin="round"
-      stroke-linecap="round"
-      data-hair-spikes="4"
-    />
-
-    <!-- Flippers / Arms -->
-    <!-- Left Flipper -->
-    <path
-      d="M 11 34 C 6 36, 5 44, 9 47 C 11 48, 14 46, 14 42 Z"
-      fill="#1C1C1C"
-      stroke="#1C1C1C"
-      stroke-width="1"
-    />
-    <!-- Right Flipper -->
-    <path
-      d="M 53 34 C 58 36, 59 44, 55 47 C 53 48, 50 46, 50 42 Z"
-      fill="#1C1C1C"
-      stroke="#1C1C1C"
-      stroke-width="1"
-    />
-
-    <!-- White Belly Oval Patch -->
-    <ellipse
-      cx="32"
-      cy="47"
-      rx="11"
-      ry="7.5"
-      fill="#FFFFFF"
-      data-tummy="white"
-    />
-
-    <!-- White Expressive Eyes -->
-    <ellipse
-      cx="24.5"
-      cy="27"
-      rx="7.5"
-      ry="6.5"
-      fill="#FFFFFF"
-      stroke="#1C1C1C"
-      stroke-width="1.2"
-    />
-    <ellipse
-      cx="39.5"
-      cy="27"
-      rx="7.5"
-      ry="6.5"
-      fill="#FFFFFF"
-      stroke="#1C1C1C"
-      stroke-width="1.2"
-    />
-
-    <!-- Signature Sarcastic / Rolling Eye Pupils (Looking Sideways-Upward) -->
-    <!-- Left Eye Pupil -->
-    <ellipse
-      cx="27.5"
-      cy="25"
-      rx="2.5"
-      ry="3.2"
-      fill="#1C1C1C"
-      data-pupil="rolling-left"
-    />
-    <circle cx="28.5" cy="24" r="0.8" fill="#FFFFFF" />
-
-    <!-- Right Eye Pupil -->
-    <ellipse
-      cx="42.5"
-      cy="25"
-      rx="2.5"
-      ry="3.2"
-      fill="#1C1C1C"
-      data-pupil="rolling-right"
-    />
-    <circle cx="43.5" cy="24" r="0.8" fill="#FFFFFF" />
-
-    <!-- Downward Curved Rounded Yellow Beak -->
-    <path
-      d="M 26.5 31
-         Q 32 30 37.5 31
-         Q 39 36 32 39.5
-         Q 25 36 26.5 31 Z"
-      fill="#F59E0B"
-      stroke="#D97706"
-      stroke-width="1"
-      stroke-linejoin="round"
-      data-beak="yellow"
-    />
-    <!-- Subtle beak smile / smirk crease -->
-    <path
-      d="M 28 33.5 Q 32 35.5 36 33.5"
-      stroke="#B45309"
-      stroke-width="0.8"
-      stroke-linecap="round"
-      fill="none"
-    />
-
-    <!-- Yellow Webbed Feet -->
-    <!-- Left Foot -->
-    <path
-      d="M 22 54
-         C 19 55, 17 58, 17 60.5
-         C 20 61, 24 60, 27 56 Z"
-      fill="#F59E0B"
-      stroke="#D97706"
-      stroke-width="1"
-      stroke-linejoin="round"
-      data-foot="left"
-    />
-    <!-- Right Foot -->
-    <path
-      d="M 42 54
-         C 45 55, 47 58, 47 60.5
-         C 44 61, 40 60, 37 56 Z"
-      fill="#F59E0B"
-      stroke="#D97706"
-      stroke-width="1"
-      stroke-linejoin="round"
-      data-foot="right"
-    />
-  </svg>
+    class="badtz-maru-pixel drop-shadow-xs"
+    style={`width: ${size}px; height: ${size}px; image-rendering: pixelated;`}
+    loading="eager"
+  />
 </div>
 
 <style>
-  .badtz-maru-svg {
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  .badtz-maru-pixel {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
 </style>
+
 

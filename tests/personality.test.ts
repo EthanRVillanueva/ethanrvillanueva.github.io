@@ -50,18 +50,12 @@ describe('Personality Components', () => {
     expect(content).toContain('data-reboot-overlay');
   });
 
-  it('BadtzMaru is an inline SVG with canonical Sanrio features (4 spikes, rolling pupils, beak, feet)', () => {
+  it('BadtzMaru renders pixel art image with pixelated rendering and decorative accessibility', () => {
     const content = fs.readFileSync(path.resolve('src/components/ui/BadtzMaru.astro'), 'utf-8');
-    expect(content).toContain('<svg');
+    expect(content).toContain('badtzmaru.png');
     expect(content).toContain('aria-hidden="true"');
-    expect(content).toContain('viewBox');
-
-    // Canonical Sanrio attributes
-    expect(content).toContain('data-hair-spikes="4"');
-    expect(content).toContain('data-pupil');
-    expect(content).toContain('data-beak="yellow"');
-    expect(content).toContain('data-tummy="white"');
-    expect(content).toContain('data-foot');
+    expect(content).toContain('pixelated');
+    expect(fs.existsSync(path.resolve('public/badtzmaru.png'))).toBe(true);
   });
 });
 
