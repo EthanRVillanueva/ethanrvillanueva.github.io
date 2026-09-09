@@ -9,10 +9,10 @@ const { experience } = Astro.props;
 ---
 
 <div
-  class={`p-6 rounded-lg bg-(--color-bg-surface) border border-(--color-border) transition-all ${
+  class={`p-6 rounded-lg bg-(--color-bg-surface) border transition-all ${
     experience.featured
-      ? 'border-l-4 border-l-(--color-accent) shadow-sm'
-      : 'opacity-95'
+      ? 'border-(--color-border) shadow-xs ring-1 ring-(--color-border)'
+      : 'border-(--color-border)/70'
   }`}
 >
   <div

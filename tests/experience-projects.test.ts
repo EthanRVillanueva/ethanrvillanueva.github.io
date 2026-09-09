@@ -12,10 +12,13 @@ describe('Experience and Projects', () => {
     expect(placement).toBeDefined();
     expect(placement?.role).toContain('Software Engineer');
     expect(placement?.duration).toContain('13 months');
+    expect(placement?.bullets.some((b) => b.includes('careers fairs'))).toBe(true);
+    expect(experienceList.some((e) => e.company === 'Five Guys Enterprises')).toBe(true);
   });
 
   it('has project data with tech chips and repository links', () => {
-    expect(projectList.length).toBeGreaterThanOrEqual(3);
+    expect(projectList.length).toBeGreaterThanOrEqual(6);
+    expect(projectList.some((p) => p.title.includes('Test-Driven Development'))).toBe(true);
     projectList.forEach((p) => {
       expect(p.title).toBeTruthy();
       expect(p.description).toBeTruthy();
@@ -26,7 +29,8 @@ describe('Experience and Projects', () => {
   it('ExperienceItem and ProjectCard markup implement spec constraints', () => {
     const expItem = fs.readFileSync(path.resolve('src/components/ui/ExperienceItem.astro'), 'utf-8');
     const projCard = fs.readFileSync(path.resolve('src/components/ui/ProjectCard.astro'), 'utf-8');
-    expect(expItem).toContain('border-l-4'); // prominent accent border
+    expect(expItem).not.toContain('border-l-4'); // no vibecoded left-border card trope
+    expect(expItem).toContain('rounded-lg');
     expect(projCard).toContain('hover:-translate-y-0.5'); // hover micro-interaction
   });
 });
