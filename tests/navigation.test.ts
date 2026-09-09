@@ -16,12 +16,12 @@ describe('Header and ThemeToggle Components', () => {
   it('Header contains all required navigation anchors and mobile hamburger button', () => {
     const content = fs.readFileSync(path.resolve('src/components/Header.astro'), 'utf-8');
     expect(content).toContain('Ethan Villanueva');
-    expect(content).toContain('href="#about"');
-    expect(content).toContain('href="#experience"');
-    expect(content).toContain('href="#projects"');
-    expect(content).toContain('href="#skills"');
-    expect(content).toContain('href="#interests"');
-    expect(content).toContain('href="#contact"');
+    expect(content).toContain('href="/#about"');
+    expect(content).toContain('href="/#experience"');
+    expect(content).toContain('href="/#projects"');
+    expect(content).toContain('href="/#skills"');
+    expect(content).toContain('href="/#interests"');
+    expect(content).toContain('href="/#contact"');
     expect(content).toContain('ThemeToggle');
     expect(content).toContain('IntersectionObserver');
     expect(content).toMatch(/aria-controls=['"]mobile-menu['"]/);

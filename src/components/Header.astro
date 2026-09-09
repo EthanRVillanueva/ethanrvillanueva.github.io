@@ -1,14 +1,14 @@
 ---
 import ThemeToggle from './ui/ThemeToggle.astro';
 
-// Navigation anchors: href="#about" href="#experience" href="#projects" href="#skills" href="#interests" href="#contact"
+// Navigation anchors: href="/#about" href="/#experience" href="/#projects" href="/#skills" href="/#interests" href="/#contact"
 const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#interests', label: 'Interests' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#about', label: 'About' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/#interests', label: 'Interests' },
+  { href: '/#contact', label: 'Contact' },
 ];
 ---
 
@@ -20,7 +20,7 @@ const navLinks = [
   >
     <!-- Brand Wordmark -->
     <a
-      href='#'
+      href='/'
       class='text-lg font-semibold tracking-tight text-(--color-text-primary) hover:text-(--color-accent) transition-colors'
       style='font-family: var(--font-heading);'
     >
@@ -121,7 +121,7 @@ const navLinks = [
           const id = entry.target.getAttribute('id');
           navLinks.forEach((link) => {
             const href = link.getAttribute('href');
-            if (href === `#${id}`) {
+            if (href === `#${id}` || href === `/#${id}` || href?.endsWith(`#${id}`)) {
               link.classList.add('text-(--color-accent)', 'font-semibold');
               link.classList.remove('text-(--color-text-secondary)');
             } else {
