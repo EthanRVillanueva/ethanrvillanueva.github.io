@@ -41,7 +41,7 @@ export const experienceList: Experience[] = [
     bullets: [
       'Designed AWS DynamoDB schemas and mock REST APIs to simulate banking transaction and account notification services for a Capital One-sponsored Customer Communication Channel.',
       'Applied GDPR data privacy controls to the system architecture, documenting decisions as formal acceptance criteria.',
-      'Collaborated with Capital One engineers across agile sprints, defining user stories, acceptance criteria, and API contracts.',
+      'Collaborated in regular agile sprints, defining user stories, acceptance criteria, and API contracts.',
     ],
     tech: ['Python', 'AWS DynamoDB', 'REST APIs', 'Agile'],
   },
@@ -54,6 +54,7 @@ export const experienceList: Experience[] = [
     bullets: [
       "Worked across the Men's and Home departments, managing stock and inventory using ZEBRA devices during peak retail periods.",
     ],
+    tech: ['Customer Service', 'Inventory Management', 'Cashiering'],
   },
   {
     role: 'Crew Member',
@@ -62,8 +63,13 @@ export const experienceList: Experience[] = [
     duration: 'Oct 2022 – Jan 2023 · 4 months',
     featured: false,
     bullets: [
-      'Prepared food items to strict recipes in a high-volume, fast-paced kitchen; earned performance bonuses for consistently maintaining sub-8-minute ticket times during peak rushes with attentive customer service.',
+      'Prepared food items in a high-volume, fast-paced kitchen; earned performance bonuses for consistently maintaining sub-8-minute ticket times during peak rushes whilst maintaining outstanding customer service.',
     ],
-    tech: ['Customer Service', 'High-Pressure Operations', 'Teamwork'],
+    tech: [
+      'Customer Service',
+      'High-Pressure Operations',
+      'Time Management',
+      'Teamwork',
+    ],
   },
 ];

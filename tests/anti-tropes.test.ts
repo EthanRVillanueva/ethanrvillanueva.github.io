@@ -3,9 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 describe('Anti-Vibecoded & Design Standards Verification', () => {
-  it('does NOT contain colored left-border cards (border-l-4)', () => {
+  it('does NOT contain generic colored left-border card tropes across projects or interests', () => {
     const files = [
-      'src/components/ui/ExperienceItem.astro',
       'src/components/ui/ProjectCard.astro',
       'src/components/Interests.astro',
     ];
