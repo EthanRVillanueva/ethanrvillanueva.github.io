@@ -26,6 +26,12 @@ export const projectList: Project[] = [
     tags: ['C', 'POSIX Threads', 'Linux/Unix', 'Concurrency', 'Valgrind'],
   },
   {
+    title: 'Test-Driven Development Refactor',
+    description:
+      'Agile software engineering project applying strict red-green-refactor TDD cycles to refactor a legacy property viewing application. Led a team of three in decoupling tightly linked legacy components into clean, modular classes following SOLID design principles, achieving 96.8% and 94.0% code coverage across the two primary domain classes with JUnit.',
+    tags: ['Java', 'JUnit', 'TDD', 'Agile', 'SOLID Principles', 'Refactoring'],
+  },
+  {
     title: 'Forest Fire Prediction Models',
     description:
       'Machine learning research project predicting forest fire burn areas from meteorological data. Built linear regression and neural network models in Scikit-Learn, evaluated with k-fold cross-validation, and achieved an MSE of 0.058 with the neural network. Visualised dataset insights and model performance in Jupyter Notebook.',

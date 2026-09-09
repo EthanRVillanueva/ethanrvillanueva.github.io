@@ -11,4 +11,5 @@ export const skillsData = {
     'JUnit',
     'Playwright',
   ],
+  certifications: ['AWS Certified Cloud Practitioner'],
 };
