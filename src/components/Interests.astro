@@ -1,51 +1,61 @@
 ---
 const interests = [
   {
-    title: "Competitive Powerlifting",
-    icon: "🏋️‍♂️",
-    description: "Training with a long-term programme, logging every session, and chasing numbers methodically. The same habits (measuring carefully, accepting that progress is slow, not skipping the boring parts) tend to follow me into engineering work too."
+    title: 'Powerlifting',
+    icon: '🏋️‍♂️',
+    description:
+      'Training with a long-term goal and routine, logging progress, and chasing numbers. The same habits (measuring carefully, accepting that progress is slow, not skipping the fundamentals) tend to follow me into engineering work too.',
   },
   {
-    title: "Poker & Chess",
-    icon: "♟️",
-    description: "Two games about information, probability, and knowing when to be patient. I play both seriously enough to think about the theory, but casually enough to still enjoy losing to better players."
+    title: 'Poker & Chess',
+    icon: '♟️',
+    description:
+      'Two games about information, probability, and knowing when to be patient. These two really test my ability to think many steps ahead, whilst keeping self-accountable when things go wrong. Respect to the high-rollers and grandmasters.',
   },
   {
-    title: "Music",
-    icon: "🎵",
-    description: "My playlist goes from game soundtracks and jazz to heavy rock depending on the mood and the task. The range is probably wider than it should be, but I'll defend all of it."
-  }
+    title: 'Music',
+    icon: '🎵',
+    description:
+      "My playlist goes from masterful OSTs, to jazz, to heavy rock, and everything in between depending on the mood and the task. The range is probably wider than it should be, but I'll defend all of it.",
+  },
 ];
 ---
 
-<section id="interests" class="py-12 sm:py-16 scroll-mt-16">
-  <div class="space-y-6">
-    <div class="space-y-1">
+<section id='interests' class='py-12 sm:py-16 scroll-mt-16'>
+  <div class='space-y-6'>
+    <div class='space-y-1'>
       <h2
-        class="text-2xl sm:text-3xl font-bold text-(--color-text-primary)"
-        style="font-family: var(--font-heading);"
+        class='text-2xl sm:text-3xl font-bold text-(--color-text-primary)'
+        style='font-family: var(--font-heading);'
       >
-        Interests & Pursuits
+        Interests
       </h2>
-      <p class="text-sm text-(--color-text-secondary)">
-        What keeps me energized outside of everyday software engineering.
+      <p class='text-sm text-(--color-text-secondary)'>
+        What I do when I'm not at my desk.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {interests.map((item) => (
-        <div class="p-5 rounded-lg bg-(--color-bg-surface) border border-(--color-border) flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="text-2xl" aria-hidden="true">{item.icon}</div>
-            <h3 class="text-base font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
-              {item.title}
-            </h3>
-            <p class="text-sm text-(--color-text-secondary) leading-relaxed">
-              {item.description}
-            </p>
+    <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
+      {
+        interests.map((item) => (
+          <div class='p-5 rounded-lg bg-(--color-bg-surface) border border-(--color-border) flex flex-col justify-between'>
+            <div class='space-y-2'>
+              <div class='text-2xl' aria-hidden='true'>
+                {item.icon}
+              </div>
+              <h3
+                class='text-base font-semibold text-(--color-text-primary)'
+                style='font-family: var(--font-heading);'
+              >
+                {item.title}
+              </h3>
+              <p class='text-sm text-(--color-text-secondary) leading-relaxed'>
+                {item.description}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>

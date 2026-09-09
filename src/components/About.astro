@@ -3,33 +3,54 @@ import XPWindow from './ui/XPWindow.astro';
 import BadtzMaru from './ui/BadtzMaru.astro';
 ---
 
-<section id="about" class="py-12 sm:py-16 scroll-mt-16">
-  <div class="space-y-6">
-    <div class="flex items-end justify-between gap-4">
-      <div class="space-y-1">
+<section id='about' class='py-12 sm:py-16 scroll-mt-16'>
+  <div class='space-y-6'>
+    <div class='flex items-end justify-between gap-4'>
+      <div class='space-y-1'>
         <h2
-          class="text-2xl sm:text-3xl font-bold text-(--color-text-primary)"
-          style="font-family: var(--font-heading);"
+          class='text-2xl sm:text-3xl font-bold text-(--color-text-primary)'
+          style='font-family: var(--font-heading);'
         >
           About Me
         </h2>
-        <p class="text-sm text-(--color-text-secondary)">A bit about my background and what drives my engineering work.</p>
+        <p class='text-sm text-(--color-text-secondary)'>
+          A bit about my background and what drives my engineering work.
+        </p>
       </div>
-      <div class="hidden sm:block pb-1" title="Badtz-Maru mascot">
+      <div class='hidden sm:block pb-1' title='Badtz-Maru mascot'>
         <BadtzMaru size={56} />
       </div>
     </div>
 
-    <XPWindow title="about_ethan.txt - Notepad" icon="📝" menuBar={true}>
-      <div class="space-y-4 text-(--color-text-primary) text-base max-w-none leading-relaxed">
+    <XPWindow title='about_ethan.txt - Notepad' icon='📝' menuBar={true}>
+      <div
+        class='space-y-4 text-(--color-text-primary) text-base max-w-none leading-relaxed'
+      >
         <p>
-          I'm a final-year Computer Science student at Nottingham, on track for a First, and recently finished a 13-month software engineering placement at Siemens. Funny enough, I never planned on studying CS. I was set on astrophysics until a boring summer break led me to Harvard's CS50x with zero programming background. One course was all it took to get hooked and switch degrees entirely.
+          I'm a final-year Computer Science student at Nottingham, on track for
+          a First, and recently finished a 13-month software engineering
+          placement at Siemens. Funny enough, I never planned on studying CS. I
+          was set on astrophysics until a boring summer break led me to
+          Harvard's CS50x with zero programming background. One course was all
+          it took to get hooked and switch degrees entirely.
         </p>
         <p>
-          At university, it's easy to get comfortable with dummy data and "close enough" logic. Siemens was a reality check in the best way: working on a live production codebase, shipping over 100 pull requests, and learning quickly that writing the code is often the straightforward part compared to navigating a large system. Outside of work, I love building things with friends and competing in hackathons, like building Mindmaply in 24 hours at LeedsHack 2026 and taking home "Best Use of Google Gemini API".
+          At university, it's easy to get comfortable with dummy data and "close
+          enough" logic. Siemens was a reality check in the best way: working on
+          a live production codebase, shipping over 100 pull requests, and
+          learning quickly that writing the code is often the straightforward
+          part compared to navigating a large system. Outside of work, I love
+          building things with friends and competing in hackathons, like
+          building Mindmaply in 24 hours at LeedsHack 2026 and taking home "Best
+          Use of Google Gemini API".
         </p>
         <p>
-          Away from the screen, I train for competitive powerlifting, play poker and chess, and listen to an eclectic mix of game soundtracks, jazz, and heavy rock. Now that I'm back in Nottingham for my final year, I'm focused on finishing strong and finding a 2027 graduate software engineering role where I can tackle complex systems with a great team.
+          Away from the screen, I train for powerlifting, play poker and chess,
+          and love listening to an eclectic mix of OSTs, jazz, rock, and
+          everything in between. Now that I'm back in Nottingham for my final
+          year, I'm focused on finishing strong and finding a 2027 graduate
+          software engineering role where I can work on genuinely interesting
+          projects with a great team.
         </p>
       </div>
     </XPWindow>

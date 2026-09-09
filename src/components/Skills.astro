@@ -3,41 +3,47 @@ import TerminalWindow from './ui/TerminalWindow.astro';
 import { skillsData } from '../data/skills';
 ---
 
-<section id="skills" class="py-12 sm:py-16 scroll-mt-16">
-  <div class="space-y-6">
-    <div class="space-y-1">
+<section id='skills' class='py-12 sm:py-16 scroll-mt-16'>
+  <div class='space-y-6'>
+    <div class='space-y-1'>
       <h2
-        class="text-2xl sm:text-3xl font-bold text-(--color-text-primary)"
-        style="font-family: var(--font-heading);"
+        class='text-2xl sm:text-3xl font-bold text-(--color-text-primary)'
+        style='font-family: var(--font-heading);'
       >
         Technical Skills
       </h2>
-      <p class="text-sm text-(--color-text-secondary)">
+      <p class='text-sm text-(--color-text-secondary)'>
         Tools, languages, and technologies I work with daily.
       </p>
     </div>
 
-    <TerminalWindow title="ethan@portfolio: ~/skills">
-      <div class="space-y-3">
+    <TerminalWindow title='ethan@portfolio: ~/skills'>
+      <div class='space-y-3'>
         <!-- ASCII Art Banner -->
         <div>
-          <span class="text-[#27C93F] font-bold">ethan@portfolio</span>:<span class="text-[#34D399]">~</span>$ <span class="text-gray-100">./motd.sh</span>
+          <span class='text-[#27C93F] font-bold'>ethan@portfolio</span>:<span
+            class='text-[#34D399]'>~</span
+          >$ <span class='text-gray-100'>./motd.sh</span>
         </div>
-        <pre class="text-[10px] sm:text-xs text-[#34D399] font-mono leading-tight select-none py-1 overflow-x-auto">
+        <pre
+          class='text-[10px] sm:text-xs text-[#34D399] font-mono leading-tight select-none py-1 overflow-x-auto'>
   ___ _   _               ' ___     ____  _     _ _ _   ___ 
  | __| |_| |_  __ _ _ __   / __|   / ___|| |__ (_) | | / __|
  | _||  _| ' \/ _` | '_ \  \__ \   \___ \| / / | | | | \__ \
  |___|\__|_||_\__,_|_| |_| |___/   |____/|_\_\ |_|_|_| |___/
 </pre>
-        <div class="text-xs text-gray-400 pb-2">
+        <div class='text-xs text-gray-400 pb-2'>
           Portfolio Terminal · Session active · Ready for input
         </div>
 
         <div>
-          <span class="text-[#27C93F] font-bold">ethan@portfolio</span>:<span class="text-[#34D399]">~/skills</span>$ <span class="text-gray-100">cat stack.json</span>
+          <span class='text-[#27C93F] font-bold'>ethan@portfolio</span>:<span
+            class='text-[#34D399]'>~/skills</span
+          >$ <span class='text-gray-100'>cat stack.json</span>
         </div>
 
-        <pre class="text-xs sm:text-sm leading-relaxed overflow-x-auto text-gray-200">
+        <pre
+          class='text-xs sm:text-sm leading-relaxed overflow-x-auto text-gray-200'>
 &#123;
   <span class="text-gray-100">"languages"</span>: [
     {skillsData.languages.map((l, i) => (
@@ -56,9 +62,11 @@ import { skillsData } from '../data/skills';
   ]
 &#125;</pre>
 
-        <div class="pt-2">
-          <span class="text-[#27C93F] font-bold">ethan@portfolio</span>:<span class="text-[#34D399]">~/skills</span>$ <span class="text-gray-100">echo "Always learning..."</span>
-          <div class="text-gray-100">Always learning...</div>
+        <div class='pt-2'>
+          <span class='text-[#27C93F] font-bold'>ethan@portfolio</span>:<span
+            class='text-[#34D399]'>~/skills</span
+          >$ <span class='text-gray-100'>echo "Always learning..."</span>
+          <div class='text-gray-100'>Always learning...</div>
         </div>
       </div>
     </TerminalWindow>

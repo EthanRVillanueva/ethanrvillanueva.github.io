@@ -1,117 +1,149 @@
 ---
+
 ---
 
-<section id="contact" class="py-12 sm:py-16 scroll-mt-16">
-  <div class="space-y-6">
-    <div class="space-y-1">
+<section id='contact' class='py-12 sm:py-16 scroll-mt-16'>
+  <div class='space-y-6'>
+    <div class='space-y-1'>
       <h2
-        class="text-2xl sm:text-3xl font-bold text-(--color-text-primary)"
-        style="font-family: var(--font-heading);"
+        class='text-2xl sm:text-3xl font-bold text-(--color-text-primary)'
+        style='font-family: var(--font-heading);'
       >
         Get In Touch
       </h2>
-      <p class="text-sm text-(--color-text-secondary)">
-        Have a question, opportunity, or just want to chat engineering? Drop a message below or email directly.
+      <p class='text-sm text-(--color-text-secondary)'>
+        Have a question, opportunity, or just want to chat engineering? Drop a
+        message below or email directly.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class='grid grid-cols-1 lg:grid-cols-3 gap-8'>
       <!-- Web3Forms Form -->
-      <div class="lg:col-span-2 p-6 rounded-lg bg-(--color-bg-surface) border border-(--color-border)">
+      <div
+        class='lg:col-span-2 p-6 rounded-lg bg-(--color-bg-surface) border border-(--color-border)'
+      >
         <form
-          action="https://api.web3forms.com/submit"
-          method="POST"
-          id="contact-form"
-          class="space-y-4"
+          action='https://api.web3forms.com/submit'
+          method='POST'
+          id='contact-form'
+          class='space-y-4'
         >
           <!-- Web3Forms Access Key & Configuration -->
-          <input type="hidden" name="access_key" value="8d3f53a2-d7a1-44ce-9703-9b5d0c4a44fe" />
-          <input type="hidden" name="subject" value="Portfolio Contact Form Submission" />
-          <input type="hidden" name="from_name" value="Portfolio Visitor" />
+          <input
+            type='hidden'
+            name='access_key'
+            value='8d3f53a2-d7a1-44ce-9703-9b5d0c4a44fe'
+          />
+          <input
+            type='hidden'
+            name='subject'
+            value='Portfolio Contact Form Submission'
+          />
+          <input type='hidden' name='from_name' value='Portfolio Visitor' />
 
           <!-- Honeypot Botcheck -->
-          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
+          <input
+            type='checkbox'
+            name='botcheck'
+            class='hidden'
+            style='display: none;'
+            tabindex='-1'
+            autocomplete='off'
+          />
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class='grid grid-cols-1 sm:grid-cols-2 gap-4'>
             <div>
-              <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-(--color-text-secondary) mb-1">
+              <label
+                for='name'
+                class='block text-xs font-semibold uppercase tracking-wider text-(--color-text-secondary) mb-1'
+              >
                 Your Name
               </label>
               <input
-                type="text"
-                name="name"
-                id="name"
+                type='text'
+                name='name'
+                id='name'
                 required
-                minlength="2"
-                maxlength="100"
-                class="w-full px-3 py-2 text-sm rounded-md border border-(--color-border) bg-(--color-bg-primary) text-(--color-text-primary) focus:outline-none focus:ring-2 focus:ring-(--color-accent) focus:border-transparent transition-colors"
-                placeholder="Ada Lovelace"
+                minlength='2'
+                maxlength='100'
+                class='w-full px-3 py-2 text-sm rounded-md border border-(--color-border) bg-(--color-bg-primary) text-(--color-text-primary) focus:outline-none focus:ring-2 focus:ring-(--color-accent) focus:border-transparent transition-colors'
+                placeholder='Ada Lovelace'
               />
             </div>
 
             <div>
-              <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-(--color-text-secondary) mb-1">
+              <label
+                for='email'
+                class='block text-xs font-semibold uppercase tracking-wider text-(--color-text-secondary) mb-1'
+              >
                 Your Email
               </label>
               <input
-                type="email"
-                name="email"
-                id="email"
+                type='email'
+                name='email'
+                id='email'
                 required
-                class="w-full px-3 py-2 text-sm rounded-md border border-(--color-border) bg-(--color-bg-primary) text-(--color-text-primary) focus:outline-none focus:ring-2 focus:ring-(--color-accent) focus:border-transparent transition-colors"
-                placeholder="ada@example.com"
+                class='w-full px-3 py-2 text-sm rounded-md border border-(--color-border) bg-(--color-bg-primary) text-(--color-text-primary) focus:outline-none focus:ring-2 focus:ring-(--color-accent) focus:border-transparent transition-colors'
+                placeholder='ada@example.com'
               />
             </div>
           </div>
 
           <div>
-            <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-(--color-text-secondary) mb-1">
+            <label
+              for='message'
+              class='block text-xs font-semibold uppercase tracking-wider text-(--color-text-secondary) mb-1'
+            >
               Message
             </label>
             <textarea
-              name="message"
-              id="message"
-              rows="4"
+              name='message'
+              id='message'
+              rows='4'
               required
-              minlength="10"
-              maxlength="5000"
-              class="w-full px-3 py-2 text-sm rounded-md border border-(--color-border) bg-(--color-bg-primary) text-(--color-text-primary) focus:outline-none focus:ring-2 focus:ring-(--color-accent) focus:border-transparent transition-colors resize-y"
-              placeholder="Hi Ethan, let's talk about..."
-            ></textarea>
+              minlength='10'
+              maxlength='5000'
+              class='w-full px-3 py-2 text-sm rounded-md border border-(--color-border) bg-(--color-bg-primary) text-(--color-text-primary) focus:outline-none focus:ring-2 focus:ring-(--color-accent) focus:border-transparent transition-colors resize-y'
+              placeholder="Hi Ethan, let's talk about..."></textarea>
           </div>
 
           <button
-            type="submit"
-            id="contact-submit-btn"
-            class="px-5 py-2.5 rounded-md bg-(--color-accent) text-white font-medium text-sm hover:bg-(--color-accent-hover) focus:outline-none focus:ring-2 focus:ring-(--color-accent) focus:ring-offset-2 transition-colors cursor-pointer"
+            type='submit'
+            id='contact-submit-btn'
+            class='px-5 py-2.5 rounded-md bg-(--color-accent) text-white font-medium text-sm hover:bg-(--color-accent-hover) focus:outline-none focus:ring-2 focus:ring-(--color-accent) focus:ring-offset-2 transition-colors cursor-pointer'
           >
             Send Message
           </button>
 
-          <div id="form-result" class="text-sm font-medium hidden"></div>
+          <div id='form-result' class='text-sm font-medium hidden'></div>
         </form>
       </div>
 
       <!-- Direct Contact Info Card -->
-      <div class="p-6 rounded-lg bg-(--color-bg-surface) border border-(--color-border) flex flex-col justify-between space-y-4">
-        <div class="space-y-3">
-          <h3 class="text-base font-semibold text-(--color-text-primary)" style="font-family: var(--font-heading);">
+      <div
+        class='p-6 rounded-lg bg-(--color-bg-surface) border border-(--color-border) flex flex-col justify-between space-y-4'
+      >
+        <div class='space-y-3'>
+          <h3
+            class='text-base font-semibold text-(--color-text-primary)'
+            style='font-family: var(--font-heading);'
+          >
             Direct Details
           </h3>
-          <p class="text-sm text-(--color-text-secondary)">
+          <p class='text-sm text-(--color-text-secondary)'>
             Prefer direct email or messaging? Feel free to reach out anytime:
           </p>
-          <div class="pt-2">
+          <div class='pt-2'>
             <a
-              href="mailto:e.villanueva.cs@outlook.com"
-              class="text-sm font-medium text-(--color-accent) hover:underline break-all"
+              href='mailto:e.villanueva.cs@outlook.com'
+              class='text-sm font-medium text-(--color-accent) hover:underline break-all'
             >
               e.villanueva.cs@outlook.com
             </a>
           </div>
         </div>
 
-        <div class="text-xs text-(--color-text-secondary)">
+        <div class='text-xs text-(--color-text-secondary)'>
           Typically responds within 24–48 hours.
         </div>
       </div>
@@ -120,9 +152,13 @@
 </section>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const form = document.getElementById(
+    'contact-form',
+  ) as HTMLFormElement | null;
   const result = document.getElementById('form-result');
-  const submitBtn = document.getElementById('contact-submit-btn') as HTMLButtonElement | null;
+  const submitBtn = document.getElementById(
+    'contact-submit-btn',
+  ) as HTMLButtonElement | null;
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -138,20 +174,24 @@
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData
+        body: formData,
       });
       const data = await response.json();
       if (response.status === 200) {
-        result.className = 'text-sm font-medium text-green-600 dark:text-green-400';
-        result.textContent = 'Thank you! Your message has been sent successfully.';
+        result.className =
+          'text-sm font-medium text-green-600 dark:text-green-400';
+        result.textContent =
+          'Thank you! Your message has been sent successfully.';
         form.reset();
       } else {
         result.className = 'text-sm font-medium text-red-600 dark:text-red-400';
-        result.textContent = data.message || 'Something went wrong. Please email directly.';
+        result.textContent =
+          data.message || 'Something went wrong. Please email directly.';
       }
     } catch {
       result.className = 'text-sm font-medium text-red-600 dark:text-red-400';
-      result.textContent = 'Error submitting form. Please email e.villanueva.cs@outlook.com.';
+      result.textContent =
+        'Error submitting form. Please email e.villanueva.cs@outlook.com.';
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Send Message';

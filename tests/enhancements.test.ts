@@ -71,8 +71,8 @@ describe('Portfolio Refinements & 20-Point Checklist', () => {
 
   it('Contact form includes constraint validation attributes', () => {
     const contact = fs.readFileSync(path.resolve('src/components/Contact.astro'), 'utf-8');
-    expect(contact).toContain('minlength="2"');
-    expect(contact).toContain('minlength="10"');
+    expect(contact).toMatch(/minlength=['"]2['"]/);
+    expect(contact).toMatch(/minlength=['"]10['"]/);
     expect(contact).toContain('botcheck');
   });
 });

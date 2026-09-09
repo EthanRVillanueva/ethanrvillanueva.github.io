@@ -3,24 +3,22 @@ import { projectList } from '../data/projects';
 import ProjectCard from './ui/ProjectCard.astro';
 ---
 
-<section id="projects" class="py-12 sm:py-16 scroll-mt-16">
-  <div class="space-y-6">
-    <div class="space-y-1">
+<section id='projects' class='py-12 sm:py-16 scroll-mt-16'>
+  <div class='space-y-6'>
+    <div class='space-y-1'>
       <h2
-        class="text-2xl sm:text-3xl font-bold text-(--color-text-primary)"
-        style="font-family: var(--font-heading);"
+        class='text-2xl sm:text-3xl font-bold text-(--color-text-primary)'
+        style='font-family: var(--font-heading);'
       >
         Projects
       </h2>
-      <p class="text-sm text-(--color-text-secondary)">
-        Selected systems, algorithms, and software engineering projects.
+      <p class='text-sm text-(--color-text-secondary)'>
+        Selected projects I'm proud of.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {projectList.map((project) => (
-        <ProjectCard project={project} />
-      ))}
+    <div class='grid grid-cols-1 md:grid-cols-2 gap-4'>
+      {projectList.map((project) => <ProjectCard project={project} />)}
     </div>
   </div>
 </section>

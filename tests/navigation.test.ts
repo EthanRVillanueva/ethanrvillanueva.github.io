@@ -24,6 +24,6 @@ describe('Header and ThemeToggle Components', () => {
     expect(content).toContain('href="#contact"');
     expect(content).toContain('ThemeToggle');
     expect(content).toContain('IntersectionObserver');
-    expect(content).toContain('aria-controls="mobile-menu"');
+    expect(content).toMatch(/aria-controls=['"]mobile-menu['"]/);
   });
 });

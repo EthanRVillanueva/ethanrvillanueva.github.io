@@ -9,7 +9,7 @@ describe('Personality Components', () => {
     expect(content).toContain('title-bar-text');
     expect(content).toContain('title-bar-controls');
     expect(content).toContain('window-body');
-    expect(content).toContain('aria-hidden="true"');
+    expect(content).toMatch(/aria-hidden=['"]true['"]/);
     // Ensure xp.css is imported inside the component style, NOT globally
     expect(content).toContain('xp.css');
 
@@ -40,7 +40,7 @@ describe('Personality Components', () => {
     const content = fs.readFileSync(path.resolve('src/components/ui/TerminalWindow.astro'), 'utf-8');
     expect(content).toContain('terminal-dot');
     expect(content).toContain('var(--font-mono)');
-    expect(content).toContain('aria-hidden="true"');
+    expect(content).toMatch(/aria-hidden=['"]true['"]/);
     expect(content).toContain('<slot />');
 
     // Interactive dots and handlers
@@ -53,7 +53,7 @@ describe('Personality Components', () => {
   it('BadtzMaru renders pixel art image with pixelated rendering and decorative accessibility', () => {
     const content = fs.readFileSync(path.resolve('src/components/ui/BadtzMaru.astro'), 'utf-8');
     expect(content).toContain('badtzmaru.png');
-    expect(content).toContain('aria-hidden="true"');
+    expect(content).toMatch(/aria-hidden=['"]true['"]/);
     expect(content).toContain('pixelated');
     expect(fs.existsSync(path.resolve('public/badtzmaru.png'))).toBe(true);
   });

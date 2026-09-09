@@ -20,7 +20,7 @@ describe('Skills and Interests Sections', () => {
 
   it('Interests component covers Powerlifting, Poker & Chess, and Music', () => {
     const content = fs.readFileSync(path.resolve('src/components/Interests.astro'), 'utf-8');
-    expect(content).toContain('Competitive Powerlifting');
+    expect(content).toContain('Powerlifting');
     expect(content).toContain('Poker & Chess');
     expect(content).toContain('Music');
   });
