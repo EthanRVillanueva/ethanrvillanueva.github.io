@@ -58,10 +58,11 @@ describe('Portfolio Refinements & 20-Point Checklist', () => {
     expect(footer).toContain('/terms');
   });
 
-  it('SEO and metadata assets exist: sitemap.xml, robots.txt, og-image.svg, and BaseLayout meta tags', () => {
+  it('SEO and metadata assets exist: sitemap.xml, robots.txt, og-image.svg, og-image.png, and BaseLayout meta tags', () => {
     expect(fs.existsSync(path.resolve('public/robots.txt'))).toBe(true);
     expect(fs.existsSync(path.resolve('public/sitemap.xml'))).toBe(true);
     expect(fs.existsSync(path.resolve('public/og-image.svg'))).toBe(true);
+    expect(fs.existsSync(path.resolve('public/og-image.png'))).toBe(true);
 
     const baseLayout = fs.readFileSync(path.resolve('src/layouts/BaseLayout.astro'), 'utf-8');
     expect(baseLayout).toContain('og:image');
