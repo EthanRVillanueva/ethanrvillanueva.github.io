@@ -16,6 +16,6 @@ describe('Production Build Output', () => {
     const html = fs.readFileSync(distIndex, 'utf-8');
     expect(html).toContain('Ethan Villanueva');
     expect(html).toContain('about_ethan.txt - Notepad');
-    expect(html).toContain('8d3f53a2-d7a1-44ce-9703-9b5d0c4a44fe');
+    expect(html).toContain('c4d5b33c-f364-49e4-8f3f-391c22180388');
   });
 });

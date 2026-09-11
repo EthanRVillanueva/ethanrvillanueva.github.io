@@ -12,7 +12,7 @@ describe('Portfolio Refinements & 20-Point Checklist', () => {
 
   it('Hero section includes headshot image and visible dark mode buttons', () => {
     const hero = fs.readFileSync(path.resolve('src/components/Hero.astro'), 'utf-8');
-    expect(hero.includes('avatar-placeholder.svg') || hero.includes('pfp_square.jpg')).toBe(true);
+    expect(hero).toContain('pfp_square.jpg');
     expect(hero).toContain('Get In Touch');
     expect(hero).toContain('text-(--color-text-primary)'); // ensures button text is visible in dark mode
   });

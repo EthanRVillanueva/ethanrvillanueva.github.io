@@ -6,7 +6,7 @@ import path from 'node:path';
 describe('Contact, Footer, and Index Integration', () => {
   it('Contact component contains Web3Forms access key, botcheck honeypot, and mailto fallback', () => {
     const contact = fs.readFileSync(path.resolve('src/components/Contact.astro'), 'utf-8');
-    expect(contact).toContain('8d3f53a2-d7a1-44ce-9703-9b5d0c4a44fe');
+    expect(contact).toContain('c4d5b33c-f364-49e4-8f3f-391c22180388');
     expect(contact).toContain('botcheck');
     expect(contact).toContain('e.villanueva.cs@outlook.com');
   });
